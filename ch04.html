@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>影子 AI：你公司 90% 的员工已经在用了 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="IT 部不知道的那场革命 —— FDE 工程师蓝皮书 · 第二幕 · 避坑">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch04.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="影子 AI：你公司 90% 的员工已经在用了 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="IT 部不知道的那场革命 —— FDE 工程师蓝皮书 · 第二幕 · 避坑">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch04.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="影子 AI：你公司 90% 的员工已经在用了 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="IT 部不知道的那场革命 —— FDE 工程师蓝皮书 · 第二幕 · 避坑">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch04" data-act="a2">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">04</div>
+<div class="inner">
+<div class="act-tag">第二幕 · 避坑</div>
+<h1>影子 AI：你公司 90% 的员工已经在用了</h1>
+<div class="teaser">IT 部不知道的那场革命</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">40% vs 90%</div><div class="d">官方许可率 vs 影子使用率</div></div><div class="sb"><div class="n">67% vs 22%</div><div class="d">外购深度交付 vs 内部自建成功率</div></div><div class="sb"><div class="n">5 问</div><div class="d">判断需求真假的探测器</div></div></div>
+<section class='reveal firstsec'><h2>【开场】IT 部不知道的那场革命</h2>
+<p>MIT NANDA 报告里藏着一组比"95%"更有意思的数字：</p>
+<ul><li>只有 <strong>40%</strong> 的公司买了官方 AI 许可；</li><li>超过 <strong>90%</strong> 的员工在用个人 AI 工具——自掏腰包的 ChatGPT、手机助手。</li></ul>
+<p><strong>不到一半的"官方 AI"，几乎全员的"影子 AI"。</strong></p>
+<p>财务总监用个人账号润色董事会邮件，销售冠军把客户资料粘进免费工具——企业数据在没人监管的管道里流动，IT 的第一反应是"封杀"。</p>
+<p>等等。这组数据该读出完全不同的东西。</p>
+<hr>
+</section><section class='reveal'><h2>【场 1】影子 AI 是市场需求的免费民调</h2>
+<p>90% 的员工没有预算、没有培训、没有许可，甚至冒着违规风险，<strong>自发地</strong>把 AI 塞进了工作流。市场调研管这叫：<strong>未被满足的真实需求，强到愿意自费违规。</strong></p>
+<table><thead><tr><th></th><th>官方项目</th><th>影子 AI</th></tr></thead><tbody><tr><td>发起方</td><td>管理层战略</td><td>员工的实际痛点</td></tr><tr><td>选择标准</td><td>供应商 PPT、合规流程</td><td>好不好用，一试便知</td></tr><tr><td>迭代速度</td><td>季度</td><td>天</td></tr><tr><td>集成深度</td><td>悬浮在工作流之外</td><td>长在具体任务上</td></tr><tr><td>失败成本</td><td>百万预算 + 组织信誉</td><td>一杯咖啡钱</td></tr></tbody></table>
+<p>员工不是对抗公司，是用脚投票：<strong>投给"能解决我今天问题"的工具，不投"符合三年规划"的项目。</strong></p>
+<p>影子 AI 是 FDE 的金矿：<strong>它标注了哪些痛点真实到员工愿意自费解决。</strong> 别只访谈管理层——去找偷偷用 AI 的员工，他们口袋里的免费工具就是最佳需求文档。</p>
+<hr>
+</section><section class='reveal'><h2>【名场面】</h2>
+<div class="component reveal"><div class="cap">官方许可 vs 影子使用</div><div class="vbars reveal"><div class="vbar"><div class="num" style="color:var(--accent)">40%</div><div class="fill" data-h="76px" style="background:linear-gradient(180deg,#1f6feb,#1558b0)"></div><div class="lab">公司购买了官方 AI 许可</div></div><div class="vbar"><div class="num" style="color:var(--red)">90%+</div><div class="fill" data-h="180px" style="background:linear-gradient(180deg,#e5484d,#b32b38)"></div><div class="lab">员工在用个人 AI 工具工作</div></div></div><p style="text-align:center;color:var(--dim);font-size:13px">需求从未消失，只是流进了你看不见的管道。</p></div>
+<hr>
+</section><section class='reveal'><h2>【场 2】自建 vs 外购：67% 与 22% 的教训</h2>
+<div class="component reveal"><div class="cap">落地方式光谱 · 选哪一段取决于三个变量</div><div class="spectrum"><div class="bar"><span class="seg">纯买 SaaS 标品</span><span class="seg">厂商 FDE 深度交付</span><span class="seg">甲方自建类 FDE</span><span class="seg">纯自研造轮子</span></div><div class="notes"><span class="nt">快但浅，通用场景</span><span class="nt">成功率 ~67%，成本可控</span><span class="nt">懂业务，能力留下</span><span class="nt">成功率 ~22% 的豪赌</span></div></div></div>
+<ul><li>外部伙伴深度实施的 GenAI 项目，成功率约 <strong>67%</strong>；</li><li>完全内部自建，约 <strong>22%</strong>。</li></ul>
+<p>不是"不要自建"，而是<strong>纯内部团队容易低估落地的全套成本</strong>：评估体系、数据工程、变革管理、持续运营——外部 FDE 天天在干，内部团队往往第一次碰到。</p>
+<p>和第 2 章"甲方自建 FDE"矛盾吗？不。结论是一个光谱（见上图），选哪段看三个变量：</p>
+<ul><li>场景差异化：越通用越该买；</li><li>数据敏感度：越高越该内部化；</li><li>工程底蕴：越弱越该借力。</li></ul>
+<p><strong>中国企业私有化需求强、行业 know-how 深，"厂商 FDE + 甲方类 FDE"的混合编队往往胜率最高。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【场 3】从"封杀影子"到"收编影子"</h2>
+<p>聪明的组织已经开始收编。三步走：</p>
+<p><strong>第一步：点亮地图。</strong> 匿名调研：用什么 AI？解决什么问题？省了多久？不追责，只摸底——得到一份免费需求热图。</p>
+<p><strong>第二步：收编 Top 场景为正式项目。</strong> 员工用得最多的 3 个场景（写作润色、会议纪要、资料查询），用合规的官方方案接住——需求已被影子使用验证过，几乎不可能失败，这就是"基本盘速赢"。</p>
+<p><strong>第三步：把影子用户变成种子用户。</strong> 最早自费用 AI 的员工是天然布道者（第 8 章"自己人"）。给他们官方工具内测资格——他们的推荐比 CIO 的邮件可信十倍。</p>
+<p><strong>影子 AI 不是合规的敌人，是需求的信使。</strong> 杀死信使，需求只会继续在你看不见的地方流动。</p>
+<hr>
+</section><section class='reveal'><h2>【场 4】FDE 的需求探测器</h2>
+<p>访谈时抛出这五问，判断"需求"是真是假：</p>
+<ol><li><strong>"没有 AI，这事你怎么解决？"</strong>——"就不做了"是伪需求；"加班做、花钱外包、忍着错"是真需求；</li><li><strong>"你自费为这个痛点买过工具吗？"</strong>——付费意愿是需求的最硬通货；</li><li><strong>"AI 只能做到 80 分，剩下 20 分怎么办？"</strong>——没想过兜底的需求还没成熟；</li><li><strong>"上次出问题是什么时候，损失多大？"</strong>——能立刻说出事故的，是真痛点；</li><li><strong>"明天上线，你明天就用吗？"</strong>——犹豫超三秒，要么不痛，要么你不是用户。</li></ol>
+<p>五问全过，才配进入 PASTA 评估（第 5 章）。<strong>FDE 的时间很贵，别浪费在需要说服的需求上。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【速查卡】判断一个需求真不真的 5 个问题</h2><button class="collect" data-card="ch04">☆ 收进卡册</button>
+<pre><code>□ 没有 AI 的时候，这个问题正在被解决吗？
+  （正在被烂解决 = 真需求；根本没人管 = 伪需求）
+□ 有人为它自费买过工具吗？
+□ 用户想清楚&quot;AI 只做 80 分&quot;的兜底了吗？
+□ 能说出最近一次具体的疼痛事故吗？
+□ 明天上线，明天就会用吗？
+——五灯全亮，才值得立项</code></pre>
+<hr>
+</section><section class='reveal'><h2>【金句海报】</h2>
+<div class="poster reveal"><p>"员工偷偷用 AI 不是风险，<br>是公司在免费给你做需求调研。"</p><div class="sig">FDE 工程师蓝皮书</div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>40% 官方许可 vs 90% 影子使用：MIT NANDA《GenAI Divide》（2025-08），基于员工调查口径</li><li>67% vs 22%：同上，build vs buy 成功率口径（该报告的统计方法存在争议，详见数据来源页）</li><li>"影子 IT/影子 AI"治理策略：综合 Gartner 影子 IT 研究与 2025–2026 年企业 AI 治理讨论</li><li>需求五问：本站原创工具</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="ch03.html">← 失败复盘：五种死法</a><a class="nextcard" href="ch05.html"><span class="nc-k">下一章</span><b>进场 72 小时</b><i>周一上午 9:07</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script></script>
+<script src="assets/app.js"></script>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>把“大概能提效”写成契约 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="那句杀死项目的话 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch06.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="把“大概能提效”写成契约 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="那句杀死项目的话 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch06.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="把“大概能提效”写成契约 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="那句杀死项目的话 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch06" data-act="a3">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">06</div>
+<div class="inner">
+<div class="act-tag">第三幕 · 作战链</div>
+<h1>把“大概能提效”写成契约</h1>
+<div class="teaser">那句杀死项目的话</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">5 问</div><div class="d">动手前必须回答的定标问题</div></div><div class="sb"><div class="n">1 页纸</div><div class="d">验收契约的全部篇幅</div></div><div class="sb"><div class="n">18 个月</div><div class="d">回本周期的生死红线</div></div></div>
+<section class='reveal firstsec'><h2>【开场】那句杀死项目的话</h2>
+<p>项目复盘会上，CFO 只问了一句："所以，这个系统今年到底给我们省了多少钱？"</p>
+<p>会议室安静了。负责人翻开 PPT："用户反馈很好，使用率也在涨，整体提效非常显著……"</p>
+<p>CFO 合上本子。第二年预算，没了。</p>
+<p>死于"感觉不错"的项目，比死于技术失败的还多——技术失败至少死得明白，"感觉不错"会拖着你烧完最后一分钱。</p>
+<p>本章就一件事：<strong>在项目开始前，把成功写成可以签字的样子。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【场 1】五问定标：动手前必须回答的五个问题</h2>
+<p>任何 AI 任务，先过这五问。缺一个，后面必有一坑：</p>
+<table><thead><tr><th>问题</th><th>不合格的回答</th><th>合格的回答</th></tr></thead><tbody><tr><td><strong>① 目标</strong></td><td>"提升客服效率"</td><td>"一级咨询 AI 独立解决率 ≥ 70%"</td></tr><tr><td><strong>② 受众</strong></td><td>"给客服团队用"</td><td>"给 12 名一线坐席，每班 8 小时高频使用"</td></tr><tr><td><strong>③ 材料</strong></td><td>"用我们的知识库"</td><td>"产品条款 47 份、FAQ 1,200 条——事实源；历史工单 8 万条——参考语料，两库分开"</td></tr><tr><td><strong>④ 格式</strong></td><td>"生成回答就行"</td><td>"JSON：answer + confidence + source_ids，置信度 &lt;0.6 自动转人工"</td></tr><tr><td><strong>⑤ 验收</strong></td><td>"上线后看效果"</td><td>"抽 200 条真实咨询盲测，准确率 ≥92%、投诉率不升，双双达标才算成"</td></tr></tbody></table>
+<p><strong>最容易被跳过的是第 ⑤ 问</strong>——它逼所有人现在就吵架，而不是三个月后。这场提前的吵架，决定项目是项目，不是许愿。</p>
+<hr>
+</section><section class='reveal'><h2>【场 2】翻译器：业务语言 → 技术指标</h2>
+<p>FDE 的核心手艺：把业务的形容词翻译成工程的数字。直接抄：</p>
+<table><thead><tr><th>业务说</th><th>FDE 翻译成</th></tr></thead><tbody><tr><td>"回复要快"</td><td>P95 端到端延迟 &lt; 2 秒</td></tr><tr><td>"答得要准"</td><td>盲测集准确率 ≥ 92%，幻觉率 &lt; 1%</td></tr><tr><td>"不能乱说话"</td><td>敏感词/越权应答拦截率 100%，附审计日志</td></tr><tr><td>"高峰期要扛得住"</td><td>300 并发，错误率 &lt; 0.5%</td></tr><tr><td>"要越用越聪明"</td><td>每周回流标注数据 ≥ 500 条，月度准确率不降</td></tr></tbody></table>
+<p><strong>每个形容词，要么翻译成数字，要么删掉。</strong> 留在需求文档里的形容词，都是未来的地雷。</p>
+<hr>
+</section><section class='reveal'><h2>【场 3】ROI-KANO 矩阵：先做哪个场景，算出来</h2>
+<div class="scrolly" data-scene="matrix"><div class="stage"><div class="component"><div class="cap">ROI-KANO 矩阵 · 先做哪个场景，算出来</div><div class="echart" data-chart="matrix" style="height:440px"></div></div></div><div class="steps"><div class="sstep"><div class="card"><b>退换货自动应答</b><br>高 ROI + 基本型需求——第一期首选，先赢一场小的。</div></div><div class="sstep"><div class="card"><b>工单自动路由</b><br>同样高 ROI：规则清晰、容错高、见效快。</div></div><div class="sstep"><div class="card"><b>差评预警</b><br>价值中等：先补数据，别急着上模型。</div></div><div class="sstep"><div class="card"><b>智能搭配推荐</b><br>期望型需求：留到二期，用第一期的信任换预算。</div></div><div class="sstep"><div class="card"><b>虚拟试穿</b><br>兴奋型 + 低 ROI：战略探索，讲故事可以，排期免谈。</div></div></div></div>
+<p>手里五个候选场景，先做哪个？别拍脑袋，放进矩阵。</p>
+<p><strong>横轴 ROI</strong>（年收益 ÷ 投入），<strong>纵轴 KANO 需求层次</strong>（基本型 &lt; 期望型 &lt; 兴奋型——用户嘴上想要的，不一定值得先做）。</p>
+<p>算例（电商售后团队，5 个候选场景）：</p>
+<table><thead><tr><th>场景</th><th>年投入</th><th>年收益</th><th>ROI</th><th>KANO</th><th>结论</th></tr></thead><tbody><tr><td>退换货自动应答</td><td>30 万</td><td>省 2.5 人力 ≈ 75 万</td><td>2.5</td><td>基本型</td><td><strong>第一期</strong></td></tr><tr><td>工单自动分类路由</td><td>20 万</td><td>时效 -40% ≈ 40 万</td><td>2.0</td><td>期望型</td><td><strong>第一期</strong></td></tr><tr><td>差评预警</td><td>25 万</td><td>难量化</td><td>待定</td><td>期望型</td><td>补数据再议</td></tr><tr><td>智能搭配推荐</td><td>80 万</td><td>待验证</td><td>?</td><td>兴奋型</td><td>二期试点</td></tr><tr><td>虚拟试穿</td><td>300 万</td><td>未知</td><td>?</td><td>兴奋型</td><td>战略探索</td></tr></tbody></table>
+<p><strong>两条铁律</strong>：</p>
+<ul><li>第一期只做<strong>高 ROI + 基本/期望型</strong>——先赢一场小的，才有资格谈大的；</li><li>算不出 ROI 的场景，不是不能做，是<strong>不能以"收益"的名义做</strong>——标记为战略探索，管理预期。</li></ul>
+
+<hr>
+</section><section class='reveal'><h2>【场 4】MVP 红线：小得不能再小，真得不能再真</h2>
+<p>三条红线：</p>
+<p><strong>红线一：范围砍到一个场景的一条链路。</strong> "智能客服"不是 MVP，"退货政策问答"才是。砍的时候心疼，就对了。</p>
+<p><strong>红线二：用真实数据，不是演示数据。</strong> 真实数据里有错别字、说一半的话、骂人的话——系统得先见过真实世界的脏。</p>
+<p><strong>红线三：写下"不做什么"清单。</strong> 多轮不做、语音不做、情感安抚不做，白纸黑字——它会替你在每次需求会上说"不"。</p>
+<p>MVP 的目标不是惊艳，是<strong>用最小代价验证最致命的假设</strong>：这个模型在这个场景的数据上，到底行不行。</p>
+<hr>
+</section><section class='reveal'><h2>【场 5】验收契约：让成功可以签字</h2>
+<p>MVP 开工前，双方签一份一页纸的验收契约，五个要素缺一不可：</p>
+<pre><code>验收契约（模板）
+1. 验收指标：______（可测量，有基线，有目标值）
+2. 验收数据集：______（来源、规模、抽样方式）
+3. 验收人：______（谁盲测、谁签字）
+4. 验收时间：______（具体到日）
+5. 未达标怎么办：______（延期/缩范围/终止，预先约定）</code></pre>
+<p>第 5 条最难谈。但谈不下第 5 条的项目，本就不该启动——<strong>没有退出条款的契约不是契约，是赌咒。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【名场面】交互引擎②：ROI 速算器</h2>
+<div class="component reveal" data-calc="roi"><div class="cap">交互计算器 · 你的场景几个月回本</div></div>
+<hr>
+</section><section class='reveal'><h2>【速查卡】任务定义卡 + 验收契约</h2><button class="collect" data-card="ch06">☆ 收进卡册</button>
+<pre><code>┌─ 任务定义卡 ─────────────────┐
+│ 场景：______（一个，只一个）      │
+│ 目标指标：基线 ___ → 目标 ___    │
+│ 受众：___ 人，使用频率 ___       │
+│ 事实源材料：______              │
+│ 输出格式：______                │
+│ 不做什么：______                │
+├─ 验收契约 ─────────────────┤
+│ 指标 / 数据集 / 验收人 / 时间    │
+│ 未达标处理：______              │
+└──────────────────────────┘</code></pre>
+<hr>
+</section><section class='reveal'><h2>【金句海报】</h2>
+<div class="poster reveal"><p>"不能写进验收标准的价值，<br>都是玄学。"</p><div class="sig">FDE 工程师蓝皮书</div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>五问定标法：综合原书稿第 3 章 3.2.1、第 4 章 4.3.1 改写</li><li>ROI-KANO 复合决策矩阵与算例：改写自原书稿第 3 章 3.3.3（场景与数字已替换为电商售后示例）</li><li>MVP 与验收：改写自原书稿第 4 章 4.2.5、4.3.4</li><li>ROI 速算器校准系数 0.7 为经验值，站点将标注"供筛选参考，非精算依据"</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="ch05.html">← 进场 72 小时</a><a class="nextcard" href="ch07.html"><span class="nc-k">下一章</span><b>建造：RAG 不是银弹，evals 才是命门</b><i>时间都花错了地方</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script src="assets/vendor/echarts.min.js"></script><script src="assets/fde-theme.js"></script><script src="assets/charts.js"></script><script></script>
+<script src="assets/app.js"></script>
+</body></html>

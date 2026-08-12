@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>建造：RAG 不是银弹，evals 才是命门 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="时间都花错了地方 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch07.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="建造：RAG 不是银弹，evals 才是命门 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="时间都花错了地方 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch07.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="建造：RAG 不是银弹，evals 才是命门 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="时间都花错了地方 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch07" data-act="a3">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">07</div>
+<div class="inner">
+<div class="act-tag">第三幕 · 作战链</div>
+<h1>建造：RAG 不是银弹，evals 才是命门</h1>
+<div class="teaser">时间都花错了地方</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">7 个</div><div class="d">RAG 管道上会漏的地方</div></div><div class="sb"><div class="n">50 条</div><div class="d">evals 评估集起步规模</div></div><div class="sb"><div class="n">3 道闸</div><div class="d">输出端的结构/安全/来源</div></div></div>
+<section class='reveal firstsec'><h2>【开场】时间都花错了地方</h2>
+<p>两个团队，同一个预算，同一个客户。</p>
+<ul><li><strong>A 团队</strong>：三个月试了 6 个模型、调了无数 prompt、上了最新框架。演示惊艳。</li><li><strong>B 团队</strong>：只挑一个模型，攒了 300 条评估集，装了全套监控。演示平平。</li></ul>
+<p>六个月后：A 团队答错一个核心问题，信任崩塌，项目停摆。B 团队准确率从 88% 爬到 96%——<strong>每一次出错都被记录、归因、修掉了</strong>。</p>
+<p>90% 的团队把 90% 的时间花在模型上。活下来的团队，把时间花在评估上。</p>
+<hr>
+</section><section class='reveal'><h2>【场 1】数据工程先行：先修水管，再谈泉水</h2>
+<p>AI 项目的第一行代码不是模型调用，是数据工程。三件事按顺序做：</p>
+<ol><li><strong>数据盘点</strong>：事实源（条款、手册、价目表）和参考语料（历史工单、聊天记录）分开放。混淆两者的后果：模型把三年前某客服的随口答复当成"公司政策"讲给客户听。</li><li><strong>数据合约（Data Contract）</strong>：和业务部门签一张纸，写清每个字段的口径、更新频率、负责人。"销售额到底含不含退款"，必须在 AI 替你回答之前就有答案。</li><li><strong>审计追踪链</strong>：原始文档 → 清洗 → 切块 → 入库 → 被检索 → 进入回答，每一环留痕。金融、医疗客户迟早会问："这回答是从哪份文件来的？"答不上来的那天，项目就结束了。</li></ol>
+<blockquote><p>金句预埋：<strong>"垃圾进垃圾出"不是段子，是预算表</strong>——数据工程通常吃掉项目 40% 以上的工作量，不把它写进计划，计划就是假的。</p></blockquote>
+<hr>
+</section><section class='reveal'><h2>【场 2】RAG 管道解剖：7 个会漏的地方</h2>
+<p>RAG 人人会讲，但生产级 RAG 死都死在细节上——7 个漏点逐个查，先查检索侧，再怪生成侧：大多数"模型不行"，其实是没检索到。</p>
+<hr>
+</section><section class='reveal'><h2>【场 3】2026 决策树：提示工程 / RAG / 微调</h2>
+<div class="component reveal"><div class="cap">2026 选型决策树 · 微调是最后的选项</div><div class="dtree"><div class="dt-q">问题到底出在哪？</div><div class="dt-arrow">↓</div><div class="dt-opts"><div class="dt-opt"><b>不懂你们的知识</b>条款、产品、内部数据<br><span class="go">→ RAG（+知识更新机制）</span></div><div class="dt-opt"><b>不懂格式与语气</b>报告体、客服口吻<br><span class="go">→ 提示工程 + few-shot</span></div><div class="dt-opt"><b>不懂判断逻辑</b>审单、风险分级<br><span class="go">→ 先写规则 prompt；500+ 标注样本后再谈微调</span></div><div class="dt-opt stop"><b>都试了还不行</b><br><span class="go">→ 先怀疑评估集和数据，最后怀疑模型</span></div></div></div></div>
+<p>客户最爱问："要不要微调一个自己的模型？"答案八成是不需要——按下面的决策树走。</p>
+<p><strong>微调的真正门槛不是钱，是数据</strong>：没有数百条高质量"输入→正确输出"样本，微调是在给模型喂迷魂汤。而且微调会冻结知识、拉高维护成本——能不动它就不动它。</p>
+<hr>
+</section><section class='reveal'><h2>【场 4】evals：给系统装仪表盘</h2>
+<div class="component reveal"><div class="cap">evals 最小闭环</div><div class="loopwrap"><svg viewBox="0 0 420 300"><circle cx="210" cy="150" r="105" fill="none" stroke="#d5dbe7" stroke-width="2" stroke-dasharray="6 6" class="spin"/><g font-size="13" fill="#1a2233" text-anchor="middle"><rect x="145" y="18" width="130" height="40" rx="10" fill="#ffffff" stroke="#16a34a"/><text x="210" y="43">① 攒评估集</text><rect x="288" y="130" width="120" height="40" rx="10" fill="#ffffff" stroke="#16a34a"/><text x="348" y="155">② 变更必跑分</text><rect x="145" y="242" width="130" height="40" rx="10" fill="#ffffff" stroke="#16a34a"/><text x="210" y="267">④ 错题回流</text><rect x="12" y="130" width="120" height="40" rx="10" fill="#ffffff" stroke="#16a34a"/><text x="72" y="155">③ 上线监控</text></g><text x="210" y="146" text-anchor="middle" fill="#16a34a" font-size="14" font-weight="bold">跑分不过</text><text x="210" y="166" text-anchor="middle" fill="#16a34a" font-size="14" font-weight="bold">不上线</text></svg></div></div>
+<p>没有评估集的项目，等于没有仪表盘的飞机——飞行员感觉良好，乘客生死看天。</p>
+<p>evals 最小闭环，四步走（闭环图见下）：</p>
+<ol><li><strong>攒评估集</strong>：50 条起步。真实历史工单抽 30 条典型题 + 10 条边界题（信息不全、问法刁钻）+ 10 条对抗题（诱导幻觉、越权请求）。每条由业务专家写上"标准答案+不可接受的错误"。</li><li><strong>定评分口径</strong>：准确率（对不对）、忠实度（有没有忠于资料）、拒答正确率（该拒的拒了没有）。能用规则判的不用模型判，能用模型判的不用人判——但<strong>人抽检永远保留 10%</strong>。</li><li><strong>每次改动必跑</strong>：改 prompt、换模型、调切块，任何变更跑一遍 evals，分数掉了不许上线。这条纪律值整个项目的一半。</li><li><strong>线上持续监控</strong>：准确率周趋势、转人工率、低置信度分布。准确率突然下滑，先查数据漂移（业务变了，模型没跟上），PSI 指数可量化漂移程度。</li></ol>
+<hr>
+</section><section class='reveal'><h2>【场 5】输出端护栏：让回答可操作、可追溯</h2>
+<p>模型输出的每一个字，都要过三道闸再见人：</p>
+<ul><li><strong>结构闸</strong>：JSON Schema 强制结构化，字段缺失直接拦截——下游系统只吃结构，不吃散文；</li><li><strong>安全闸</strong>：敏感词、越权话题（"帮我改一下保单受益人"）、数据泄露检查，命中即拦截转人工；</li><li><strong>来源闸</strong>：每个事实性陈述必须挂来源 ID，挂不上的降级为"建议咨询人工"。</li></ul>
+<p>三道闸的日志全部留痕。它们平时是成本，出事的那个晚上，是救命的东西。</p>
+<hr>
+<div class="component reveal"><div class="cap">RAG 管道 · 7 个漏点（点击排查）</div><div class="pipeline"><div class="pnode" data-t="漏点 1 · 文档解析" data-d="症状：PDF 表格拆成乱码，数字对不上。<br>补救：专用解析器 + 表格结构化，解析结果人工抽检。"><span class="n">1</span>文档解析</div><div class="pnode" data-t="漏点 2 · 切块策略" data-d="症状：答案被拦腰切断，检索到半句话。<br>补救：按语义块切、保留标题层级、重叠 10–15%。"><span class="n">2</span>切块策略</div><div class="pnode" data-t="漏点 3 · 嵌入模型" data-d="症状：中文行业术语检索不到。<br>补救：换中文优化的 embedding，用真实 query 测召回。"><span class="n">3</span>嵌入模型</div><div class="pnode" data-t="漏点 4 · 检索召回" data-d="症状：该命中的文档排在第 30 名。<br>补救：top-k 放大 + BM25 与向量混合检索。"><span class="n">4</span>检索召回</div><div class="pnode" data-t="漏点 5 · 重排序" data-d="症状：召回了但排错序。<br>补救：加 reranker 层，重排后再截断。"><span class="n">5</span>重排序</div><div class="pnode" data-t="漏点 6 · 提示组装" data-d="症状：检索内容塞太多，模型注意力涣散。<br>补救：只留 top 3–5，标注来源编号。"><span class="n">6</span>提示组装</div><div class="pnode" data-t="漏点 7 · 生成校验" data-d="症状：模型不看资料自由发挥。<br>补救：强制引用来源 ID，无来源不输出。"><span class="n">7</span>生成校验</div></div><div class="pdetail"></div></div>
+</section><section class='reveal'><h2>【速查卡】evals 起步清单：50 条评估集怎么攒</h2><button class="collect" data-card="ch07">☆ 收进卡册</button>
+<pre><code>□ 30 条典型题：从最近 3 个月真实工单随机抽
+□ 10 条边界题：信息不全 / 多意图 / 口语化严重
+□ 10 条对抗题：诱导幻觉 / 越权请求 / 注入攻击
+□ 每条标注：标准答案 + 致命错误清单 + 来源文档 ID
+□ 业务专家签字确认（不是工程师自己拍脑袋）
+□ 三个指标口径写进文档：准确率 / 忠实度 / 拒答正确率
+□ 定死纪律：任何变更，跑分不过不上线
+□ 每月新增 10 条线上错题回流</code></pre>
+<hr>
+</section><section class='reveal'><h2>【金句海报】</h2>
+<div class="poster reveal"><p>"没有评估集的 AI 项目，<br>等于没有仪表盘的飞机。"</p><div class="sig">FDE 工程师蓝皮书</div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>数据合约、审计追踪链：改写自原书稿第 5 章 5.3</li><li>输入端/输出端增强、护栏：改写自原书稿第 5 章 5.2</li><li>RAG 失效点清单：基于生产级 RAG 工程实践的通用归纳（原书 5.2.1 + 2025–2026 社区共识实践）</li><li>模型漂移与 PSI：改写自原书稿第 4 章 4.4.1</li><li>决策树与"500 条标注样本"阈值为经验值，站点标注"经验法则，供参考"</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="ch06.html">← 把“大概能提效”写成契约</a><a class="nextcard" href="ch08.html"><span class="nc-k">下一章</span><b>最后 100 米：从 Demo 到生产</b><i>死亡率最高的一天</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script></script>
+<script src="assets/app.js"></script>
+</body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>砾石路原理：别把天赋浪费成高薪外包 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="Palantir 最值钱的发明不是软件 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch09.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="砾石路原理：别把天赋浪费成高薪外包 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="Palantir 最值钱的发明不是软件 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch09.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="砾石路原理：别把天赋浪费成高薪外包 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="Palantir 最值钱的发明不是软件 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch09" data-act="a3">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">09</div>
+<div class="inner">
+<div class="act-tag">第三幕 · 作战链</div>
+<h1>砾石路原理：别把天赋浪费成高薪外包</h1>
+<div class="teaser">Palantir 最值钱的发明不是软件</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">2 次</div><div class="d">每个项目该交付的次数</div></div><div class="sb"><div class="n">4 级</div><div class="d">个人资产化阶梯</div></div><div class="sb"><div class="n">3 块</div><div class="d">滑向咨询公司的警示牌</div></div></div>
+<section class='reveal firstsec'><h2>【开场】Palantir 最值钱的发明不是软件</h2>
+<p>2010 年代初，Palantir 的工程师在客户现场干一件"不体面"的事：写一堆只对这个客户有效的、丑陋的、一次性代码。</p>
+<p>当时硅谷的主流观点：这叫定制开发，是低毛利咨询公司的活法，正经软件公司不这么干。</p>
+<p>二十年后，Palantir 市值千亿美金，那套"丑陋代码"背后的方法论，被 OpenAI、Anthropic 和上百家 YC 公司抄了个遍。</p>
+<p>亲历者 Bob McGrew（前 Palantir 产品负责人、前 OpenAI 首席研究官）给它起了名字：<strong>砾石路（Gravel Road）</strong>。</p>
+<hr>
+</section><section class='reveal'><h2>【场 1】砾石路 → 柏油路：完整回路</h2>
+<p>整条回路四步，缺一步就不是 FDE 模式，是普通外包：</p>
+<ol><li><strong>铺砾石路。</strong> 针对客户当下最痛的问题，快速修一条"能走就行"的路——一次性代码、胶水脚本、手工配置，全部允许。目标只有一个：<strong>这周就让客户的业务跑起来。</strong></li><li><strong>把路带回总部。</strong> 产品团队不干"把它写漂亮"，只问一句：<strong>"这条路底下，是不是藏着一条所有客户都需要的高速公路？"</strong></li><li><strong>多客户验证。</strong> 不凭一个客户泛化。把 B、C 客户的 FDE 叫进来："这个抽象在你们的现场成立吗？"三家点头，才动工修柏油路。</li><li><strong>新路反哺现场。</strong> 产品功能发回所有现场，FDE 的下一个项目起点更高——上次的胶水代码，这次直接是平台能力。</li></ol>
+<p>四步首尾相接，就是下面这个循环。<strong>这就是复利的来源：每个项目交付两次——一次给客户，一次给产品。</strong> 只做第一次，是外包；两次都做，才是 FDE。</p>
+<hr>
+</section><section class='reveal'><h2>【名场面】铺路循环动画</h2>
+<div class="component reveal"><div class="cap">砾石路 → 柏油路 · 复利循环</div><div class="loopwrap"><svg viewBox="0 0 420 300"><circle cx="210" cy="150" r="105" fill="none" stroke="#d5dbe7" stroke-width="2" stroke-dasharray="6 6" class="spin"/><g font-family="sans-serif" font-size="13" fill="#1a2233" text-anchor="middle"><rect x="150" y="18" width="120" height="40" rx="10" fill="#ffffff" stroke="#1f6feb"/><text x="210" y="43">① 现场 hack</text><rect x="288" y="130" width="120" height="40" rx="10" fill="#ffffff" stroke="#1f6feb"/><text x="348" y="155">② 泛化设计</text><rect x="150" y="242" width="120" height="40" rx="10" fill="#ffffff" stroke="#16a34a"/><text x="210" y="267">④ 反哺现场</text><rect x="12" y="130" width="120" height="40" rx="10" fill="#ffffff" stroke="#1f6feb"/><text x="72" y="155">③ 多客户验证</text></g><text x="210" y="146" text-anchor="middle" fill="#b45309" font-size="15" font-weight="bold">每一圈</text><text x="210" y="166" text-anchor="middle" fill="#b45309" font-size="15" font-weight="bold">平台更厚</text></svg></div></div>
+<hr>
+</section><section class='reveal'><h2>【场 2】本体论：高速公路下面的地基</h2>
+<p>柏油路越铺越多，靠什么不乱？Palantir 的答案是<strong>本体论（Ontology）</strong>——一句话讲透：</p>
+<blockquote><p>把客户的业务世界建模成「对象、属性、关系、动作」——不是一张张数据库表，而是一个个业务实体：客户、订单、设备、保单。</p></blockquote>
+<p>为什么这对 FDE 重要？三个理由：</p>
+<ol><li><strong>同一个"保单"对象建一次，所有场景复用</strong>——客服场景建的，理赔场景直接用；</li><li><strong>业务人员看得懂</strong>——不懂表结构，也能确认"这建得对不对"；</li><li><strong>AI 天然需要它</strong>——"对什么对象做什么动作"，正是 Agent 需要的接口层。Palantir 自称 Gen AI 让部署提速 6 倍，地基就在这里。</li></ol>
+<p>给你的启示不是"上 Palantir"，而是：<strong>先建业务实体层，再建应用。</strong> 绕过实体层直接糊应用，第三个场景开始还债。</p>
+<hr>
+</section><section class='reveal'><h2>【场 3】个人的砾石路：Prompt → 任务卡 → SOP → 组件</h2>
+<div class="component reveal"><div class="cap">个人资产化阶梯 · 每周五升级一件</div><div class="ladder"><div class="rung" style="height:26%"><div class="lv">L1</div><div class="nm">Prompt</div><div class="ds">一次性指令，这次能用下次重写</div></div><div class="rung" style="height:46%"><div class="lv">L2</div><div class="nm">任务卡</div><div class="ds">带输入/输出/验收，换人也能用</div></div><div class="rung" style="height:68%"><div class="lv">L3</div><div class="nm">SOP</div><div class="ds">多步骤流程+异常处理，跨项目能用</div></div><div class="rung" style="height:92%"><div class="lv">L4</div><div class="nm">组件</div><div class="ds">代码封装+版本管理，全团队复用</div></div></div></div>
+<p>铺路原理对你个人同样成立。你写的每个 prompt、每段脚本，都是一条小砾石路。上面这架四级阶梯，看你的沉淀到哪一级。</p>
+<p>每周五问一次：<strong>这周写的东西里，哪件值得升一级？</strong> 一年 52 次升级机会——普通工程师和资深 FDE 的差距，不在智商，在沉淀率。</p>
+<hr>
+</section><section class='reveal'><h2>【场 4】定价与陷阱：McGrew 的警告</h2>
+<p>McGrew 给想抄 FDE 模式的创始人泼了一盆冷水：<strong>"我的建议往往是——别抄。"</strong> 因为这条路有个致命岔口：</p>
+<ul><li><strong>向左</strong>：现场 hack 沉淀为产品 → 每个新客户交付更快、成本更低 → 规模效应，软件公司的毛利；</li><li><strong>向右</strong>：每单都定制、沉淀为零 → 收入增长靠加人 → <strong>你开了一家低毛利咨询公司，还给自己发着软件公司的工资单。</strong></li></ul>
+<p>岔口上三块警示牌，出现任何一块，说明你正在向右滑：</p>
+<ol><li><strong>同一类问题，第三次还在从零定制</strong>（沉淀失败）；</li><li><strong>FDE 的技能全是"客户业务"，没有沉淀为"平台能力"</strong>（人走茶凉）；</li><li><strong>收入按人天计价，且客户不愿意为结果付费</strong>（模式降级）。</li></ol>
+<p>定价的演进方向，是从"卖人天"走向<strong>按结果定价（outcome-based）</strong>。敢按结果收费，是因为手里有沉淀——<strong>定价权是沉淀的函数。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【场 5】带回你的战场</h2>
+<p>三个明天就能用的动作：</p>
+<ol><li><strong>每个项目结束，开 30 分钟"铺路会"</strong>：这次交付里，哪部分下个客户 100% 还会需要？抽象出来，哪怕只是一个模板。</li><li><strong>维护你的"路基库"</strong>：任务卡、evals 集、护栏规则、上线清单——版本化管理，每次项目取用并回写改进。</li><li><strong>拒绝第三次重复</strong>：同类需求第三次出现，必须停下来做通用方案。重复是信号，不是工作。</li></ol>
+<hr>
+</section><section class='reveal'><h2>【速查卡】交付复盘十问</h2><button class="collect" data-card="ch09">☆ 收进卡册</button>
+<pre><code>1. 这次交付，客户的核心指标到底动了没有？
+2. 哪部分工作，下个客户 100% 还会需要？
+3. 哪部分工作，已经是第三次从零做了？
+4. 我写的 prompt/脚本/模板，哪件可以升一级？
+5. 这次的坑，哪一个应该写进检查清单？
+6. 业务实体层有没有变厚？还是更乱了？
+7. 客户团队里，谁学会了独立运维这套系统？
+8. 沉淀物有没有版本化入库，还是躺在我的电脑里？
+9. 这个项目的定价，如果按结果收费，我敢报多少？
+10. 下次进场，有什么可以从第 3 天提前到第 1 天？</code></pre>
+<hr>
+</section><section class='reveal'><h2>【金句海报】</h2>
+<div class="poster reveal"><p>"每个项目交付两次：<br>一次给客户，一次给产品。"</p><div class="sig">FDE 工程师蓝皮书</div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>砾石路（Gravel Road）→ 柏油路回路、多客户验证、用人与定价警告：Bob McGrew × Y Combinator《The FDE Playbook for AI Startups》，2025-09；解读参考 The AI Opportunity 的拆解（2026-07）</li><li>本体论（Ontology）与"Gen AI 提速 6 倍"：Palantir 公开资料及 Forward Deployed（forwarddeployedbook.com）的框架介绍，"6 倍"为 Palantir 自述口径</li><li>L1–L4 个人沉淀阶梯：基于社区 Skill/资产化实践的归纳（本站观点）</li><li>三块警示牌、交付复盘十问：本站原创方法论</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="ch08.html">← 最后 100 米：从 Dem</a><a class="nextcard" href="ch10.html"><span class="nc-k">下一章</span><b>前线复盘①：让 FCR 冲到 90% 的保险项目</b><i>那通凌晨两点的电话</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script></script>
+<script src="assets/app.js"></script>
+</body></html>

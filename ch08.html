@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>最后 100 米：从 Demo 到生产 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="死亡率最高的一天 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch08.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="最后 100 米：从 Demo 到生产 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="死亡率最高的一天 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch08.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="最后 100 米：从 Demo 到生产 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="死亡率最高的一天 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch08" data-act="a3">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">08</div>
+<div class="inner">
+<div class="act-tag">第三幕 · 作战链</div>
+<h1>最后 100 米：从 Demo 到生产</h1>
+<div class="teaser">死亡率最高的一天</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">5 / 100</div><div class="d">从立项走到产生 P&L 影响</div></div><div class="sb"><div class="n">4 类</div><div class="d">必须转人工的触发条件</div></div><div class="sb"><div class="n">48 小时</div><div class="d">每级灰度的最短观察期</div></div></div>
+<section class='reveal firstsec'><h2>【开场】死亡率最高的一天</h2>
+<p>演示会上，系统对答如流，老板带头鼓掌，客户当场说"全面推广"。</p>
+<p>散会时，IT 经理拉住你："生产环境的高并发、权限、审计……还没谈过。"业务主管补刀："坐席那边，我还没想好怎么跟他们讲。"</p>
+<p><strong>演示成功不是终点线，是发令枪。</strong> MIT 报告里 95% 的项目，大多不是死在技术选型那天，而是死在演示成功到真实生产之间的最后 100 米。</p>
+<p>这一章讲这 100 米怎么跑。</p>
+<hr>
+</section><section class='reveal'><h2>【场 1】存活漏斗：100 个 PoC 出发，几个能站着</h2>
+<p>把企业 AI 项目画成漏斗：100 个立项，60 个进 PoC，30 个演示"成功"，15 个试点上线，8 个全员推广——<strong>只有 5 个真正产生 P&amp;L 影响</strong>。</p>
+<p>死因层层不同，打法也不同：<strong>上半程靠判断，下半程靠工程和组织。</strong> 只会上半程的是顾问，只会下半程的是外包，全程能打的才是 FDE。</p>
+<hr>
+</section><section class='reveal'><h2>【场 2】人工兜底：不是 AI 不行才用人，是设计里就有人</h2>
+<div class="component reveal"><div class="cap">置信度路由 · 人工兜底设计图</div><div class="dtree"><div class="dt-q">用户提问 → 置信度评估</div><div class="dt-arrow">↓</div><div class="dt-opts"><div class="dt-opt"><b>高 ≥ 0.85</b><br><span class="go">→ AI 直接回答</span></div><div class="dt-opt"><b>中 0.6–0.85</b><br><span class="go">→ AI 回答 + 标注「建议人工复核」</span></div><div class="dt-opt stop"><b>低 < 0.6 或敏感话题</b><br><span class="go">→ 热转人工：完整上下文 + 建议答复，处理结果回流评估集</span></div></div></div><p style="text-align:center;color:var(--dim);font-size:13px">敢转人工的系统，比假装什么都会的系统更值得信任。</p></div>
+<p>客户常问："系统准确率多少？" 错误回答是报数字，正确回答是上面这张置信度路由图——<strong>答案不是一个数，是一条分流规则</strong>。</p>
+<p><strong>兜底机制三要点</strong>：</p>
+<ol><li><strong>触发条件写死</strong>：低置信度、敏感话题（投诉、赔付、改约）、用户明确要求、情绪激烈——四类必转；</li><li><strong>转接要"热"</strong>：人工接手的是完整对话历史 + 已查资料 + 建议答复——用户不说第二遍；</li><li><strong>回流要闭环</strong>：每条人工处理都变成训练/评估数据——兜底不是成本，是系统的"在职培训"。</li></ol>
+<p><strong>敢转人工的系统，比假装什么都会的系统更值得信任。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【场 3】上线工程：加固清单</h2>
+<div class="component reveal"><div class="cap">灰度发布节奏</div><div class="stepper"><div class="step"><div class="dot"></div><div class="sn">5%</div><div class="sd">真实流量</div></div><div class="step"><div class="dot"></div><div class="sn">20%</div><div class="sd">观察 48h</div></div><div class="step"><div class="dot"></div><div class="sn">50%</div><div class="sd">四项指标达标</div></div><div class="step"><div class="dot"></div><div class="sn">100%</div><div class="sd">全量 + 回滚待命</div></div></div><p style="text-align:center;color:var(--dim);font-size:13px">每级观察 48 小时：准确率 / 转人工率 / 延迟 / 投诉率，全达标才进下一级。</p></div>
+<p>演示到生产，中间隔着一层工程加固。核心五项：</p>
+<ol><li><strong>高并发低延迟</strong>：分级缓存（高频问答命中率可达 60%+）、推理加速、异步队列削峰——目标不是"快"，是<strong>高峰期不崩</strong>；</li><li><strong>灰度发布</strong>：不一次全量，逐级放量（节奏见上方步骤条）；</li><li><strong>一键回滚</strong>：10 分钟内切回旧系统/纯人工，上线前真演练一次——<strong>没演练过的回滚等于没有</strong>；</li><li><strong>全链路监控</strong>：输入量、命中率、置信度分布、拦截量、转人工量、单会话成本——每条告警写明<strong>谁收到、怎么处理</strong>；</li><li><strong>安全合规</strong>：权限最小化、数据脱敏、操作留痕、备案齐全——合规不是盖章，是最后一道闸。</li></ol>
+<hr>
+</section><section class='reveal'><h2>【场 4】变革管理：坐席为什么偷偷抵制你的系统</h2>
+<p>某项目上线两周，转人工率诡异高达 80%。排查半天，技术没问题——是坐席在引导用户说"转人工"。</p>
+<p>为什么？没人告诉他们这系统会不会让自己失业。<strong>当员工把 AI 当对手，他们有 100 种方法让数据难看。</strong> 人心问题没有补丁可打。</p>
+<p>上线前必做四个动作：</p>
+<ol><li><strong>先讲"你会变成什么"，再讲系统。</strong> AI 接走重复咨询，你升级为复杂问题专家 + AI 训练师——岗位说明书改好再宣布；</li><li><strong>让一线参与设计。</strong> 资深坐席参与评估集标注和验收测试——参与建设的人不拆台；</li><li><strong>考核跟着改。</strong> "处理复杂问题数""知识库贡献数"进 KPI——考核不变，行为不变；</li><li><strong>找"自己人"当布道者。</strong> 班组里最被信任的老员工先用、先赢、先讲——比 CIO 的邮件管用十倍。</li></ol>
+
+<hr>
+</section><section class='reveal'><h2>【场 5】规模化：一个站点成功之后</h2>
+<p>第一个场景跑通，考验才刚开始：复制到第二个场景、第二个部门。</p>
+<p><strong>可复制的不是代码，是配方</strong>：数据合约模板、evals 流程、护栏配置、灰度节奏、变革话术，全部文档化——新场景复用 70%，定制 30%。</p>
+<p>同时建立<strong>运营节奏</strong>：每周看错题和准确率趋势，每月更新知识库，每季度重跑 ROI。<strong>AI 系统不是交付物，是活物——没人养，三个月就退化。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【名场面】PoC→生产存活漏斗</h2>
+<div class="scrolly" data-scene="funnel"><div class="stage"><div class="component"><div class="cap">PoC → 生产 · 存活漏斗</div><div class="echart" data-chart="funnel" style="height:460px"></div><p style="text-align:center;color:var(--dim);font-size:13px">各层数字为示意模型，来源：MIT NANDA 5% 终值 + 行业经验外推。</p></div></div><div class="steps"><div class="sstep"><div class="card"><b>100 个立项</b><br>大多数死在娘胎里：痛点不真，跟风立项。</div></div><div class="sstep"><div class="card"><b>60 个进 PoC</b><br>数据拿不到、权限卡住——四成项目直接流产。</div></div><div class="sstep"><div class="card"><b>30 个 PoC“成功”</b><br>干净数据上的自嗨，离生产还隔着一片海。</div></div><div class="sstep"><div class="card"><b>15 个试点上线</b><br>高并发崩、护栏缺失，Demo 魔咒在此显灵。</div></div><div class="sstep"><div class="card"><b>8 个全员推广</b><br>员工抵制、流程不改，使用率阴跌。</div></div><div class="sstep"><div class="card"><b>5 个产生 P&L 影响</b><br>终值：MIT NANDA 的 5%。无人运营，效果还会衰减。</div></div></div></div>
+<hr>
+</section><section class='reveal'><h2>【速查卡】上线前夜检查清单</h2><button class="collect" data-card="ch08">☆ 收进卡册</button>
+<pre><code>工程
+□ 压测通过：峰值并发 ___ 下错误率 &lt; 0.5%
+□ 缓存、队列、降级预案就绪
+□ 一键回滚演练过（真的演练过，不是文档写过）
+□ 监控告警配置，且每个告警有明确处理人
+护栏
+□ 敏感话题拦截规则已更新到最新业务口径
+□ 低置信度转人工阈值已和业务确认
+□ 全部回答可溯源（来源 ID 可点击查证）
+组织
+□ 坐席宣讲完成，岗位变化说清楚
+□ 新 KPI 已发布
+□ 每个班组有&quot;自己人&quot;布道者
+□ 第一周值守排班表（出状况 10 分钟内有人响应）
+合规
+□ 数据权限审计通过
+□ 备案/审批手续齐全</code></pre>
+<hr>
+</section><section class='reveal'><h2>【金句海报】</h2>
+<div class="poster reveal"><p>"Demo 是魔术，生产是走钢丝——<br>区别在于有没有防护网。"</p><div class="sig">FDE 工程师蓝皮书</div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>存活漏斗各层死亡率：基于 MIT NANDA 报告（5% 产生 P&amp;L 影响）及行业普遍经验的示意模型，各层数字为示意非精确统计</li><li>人工兜底机制：改写自原书稿第 4 章 4.4.4、第 6 章 6.1.6</li><li>高并发工程与监控：改写自原书稿第 6 章 6.1.6</li><li>变革管理四动作：改写自原书稿第 6 章 6.1.6"组织变革管理"、第 5 章 5.5</li><li>置信度阈值（0.85/0.6）为示例值，实际需按场景校准</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="ch07.html">← 建造：RAG 不是银弹，ev</a><a class="nextcard" href="ch09.html"><span class="nc-k">下一章</span><b>砾石路原理：别把天赋浪费成高薪外包</b><i>Palantir 最值钱的发明不是软件</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script src="assets/vendor/echarts.min.js"></script><script src="assets/fde-theme.js"></script><script src="assets/charts.js"></script><script></script>
+<script src="assets/app.js"></script>
+</body></html>

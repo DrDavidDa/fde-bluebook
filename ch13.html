@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拿下 offer：面试官真正想看到的 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="那道没有标准答案的题 —— FDE 工程师蓝皮书 · 第四幕 · 前线与身价">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch13.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="拿下 offer：面试官真正想看到的 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="那道没有标准答案的题 —— FDE 工程师蓝皮书 · 第四幕 · 前线与身价">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch13.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="拿下 offer：面试官真正想看到的 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="那道没有标准答案的题 —— FDE 工程师蓝皮书 · 第四幕 · 前线与身价">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch13" data-act="a4">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">13</div>
+<div class="inner">
+<div class="act-tag">第四幕 · 前线与身价</div>
+<h1>拿下 offer：面试官真正想看到的</h1>
+<div class="teaser">那道没有标准答案的题</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">3 轮</div><div class="d">面试的完整链路</div></div><div class="sb"><div class="n">30 题</div><div class="d">本章备战题库</div></div><div class="sb"><div class="n">×5</div><div class="d">同名岗位的真实差价</div></div></div>
+<section class='reveal firstsec'><h2>【开场】那道没有标准答案的题</h2>
+<p>一位候选人在 Palantir 系公司的终面被问到：</p>
+<p>"假设你明天进驻一家医院。院长说'我们要用 AI 提升效率'，信息科主任说'系统不能动'，护士长说'别给我们添乱'。你第一周做什么？"</p>
+<p>候选人开始讲技术方案。面试官打断："你还没问问题。"</p>
+<p><strong>FDE 面试考的不是答案，是你先问什么。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【场 1】三轮面试的隐藏考纲</h2>
+<div class="component reveal"><div class="cap">三轮面试 · 隐藏考纲</div><div class="stepper"><div class="step"><div class="dot"></div><div class="sn">技术轮</div><div class="sd">你真能独立造出来吗？关键词：evals 思维</div></div><div class="step"><div class="dot"></div><div class="sn">现场模拟轮</div><div class="sd">45 分钟进场计划：问题质量占 40%</div></div><div class="step"><div class="dot"></div><div class="sn">客户沟通轮</div><div class="sd">压力题暗线：单独扔进客户现场，公司是增值还是减值</div></div></div></div>
+<p><strong>第一轮：技术轮——"你真能独立造出来吗？"</strong></p>
+<ul><li>白板设计 RAG 系统：重点不在画图，在你<strong>主动问什么</strong>——数据量级？更新频率？延迟要求？不追问就开画的，直接挂；</li><li>手写数据管道代码：看工程直觉，不是语法；</li><li>"准确率从 92% 掉到 85%，怎么排查？"——考 evals 思维：数据漂移 → 检索召回 → 模型版本。<strong>没有评估思维的技术答案，全部零分。</strong></li></ul>
+<p><strong>第二轮：现场模拟轮——"你在混乱里能开路吗？"</strong></p>
+<ul><li>考题：一个模糊需求（"用 AI 提升客户满意度"），45 分钟后向"客户 CIO"汇报进场计划；</li><li>评分权重：问题质量 40%（问了预算、数据、验收标准、上一个项目怎么死的吗）＞ 问题定义 30%（能否翻译成可测量的命题）＞ 方案节奏 20%（先 MVP 还是画大饼）＞ 表达气场 10%；</li><li>气场只有一条标准：像顾问，还是像乙方。</li></ul>
+<p><strong>第三轮：客户沟通轮——"你能代表公司坐在客户对面吗？"</strong></p>
+<ul><li>"别人的 demo 比你的好看"——把话题从 demo 效果拉回验收标准和真实数据；</li><li>"CEO 要砍预算 30%"——保数据工程和 evals，砍界面美化，考你对价值链的理解；</li><li>角色扮演：向不懂技术的业务负责人解释为什么不能"直接接 ChatGPT"。</li></ul>
+<p><strong>三轮共同的暗线</strong>：把这个人单独扔进客户现场三个月，公司是增值还是减值。</p>
+<hr>
+</section><section class='reveal'><h2>【场 2】JD 解码术：读出字缝里的信息</h2>
+<p>招聘启事是加密的，解码规则：</p>
+<table><thead><tr><th>JD 上写的</th><th>实际是</th></tr></thead><tbody><tr><td>"快节奏环境"</td><td>没有流程，自己开路，也可能没人帮你</td></tr><tr><td>"与客户紧密合作"</td><td>50% 以上时间在客户现场或时区里</td></tr><tr><td>"从 0 到 1"</td><td>没有现成方案，包括没有文档</td></tr><tr><td>"支持销售周期"</td><td>要陪售前去讲，半个售前</td></tr><tr><td>"推动产品反馈闭环"</td><td>有砾石路机制，真 FDE</td></tr><tr><td>"负责端到端交付"</td><td>出问题时没有别人可推</td></tr></tbody></table>
+<p>再用第 2 章的三问反查，真假 FDE 岗位一验便知。</p>
+<hr>
+</section><section class='reveal'><h2>【场 3】中美两个市场：不同的牌桌</h2>
+<ul><li><strong>美国</strong>：岗位充足（100+ YC 公司 + 大厂），薪酬透明（$140K–600K+），强调全栈与创业气质，签证是主要门槛；</li><li><strong>中国</strong>：岗位名称混乱（解决方案工程师/交付专家/AI 应用工程师），但需求实打实在涨——私有化部署、国产模型适配、行业 know-how 三重要求，让合格的 FDE 比美国更稀缺。头部公司已开出对标研发的包。</li></ul>
+<p>差异化策略：<strong>与其卷"会用模型"，不如卷"懂一个行业 + 会私有化交付"</strong>——后者目前几乎没有竞争者。</p>
+<hr>
+</section><section class='reveal'><h2>【场 4】终极叩问：FDE 会被 Agent 取代吗</h2>
+<p>全书最后，正面回答这个问题。<strong>取代是分层发生的</strong>：</p>
+<ul><li><strong>正在被吃掉的部分</strong>：查数据、写胶水代码、生成文档、跑评估——可编码的部分，正在被 Agent 工具链快速自动化；</li><li><strong>反而更值钱的部分</strong>：判断哪个问题值得解决、在组织政治里开路、为结果签字——这些不是技术问题，是<strong>信任与责任问题</strong>。客户 CIO 敢把千万级项目托付给 Agent 吗？短期内，他只敢托付给人。</li></ul>
+<p>McGrew 的洞察：FDE 本质上是"人形 Agent"。反过来也成立——<strong>Agent 越强大，驾驭 Agent 的 FDE 杠杆率越高。</strong> 一个 FDE 带一组 Agent，能交付过去五个人的活：岗位不消失，门槛水涨船高。</p>
+<p>终章的答案不是安慰，是军规：</p>
+<blockquote><p><strong>AI 不会取代 FDE。但会用 AI 的 FDE，会取代不用的。</strong></p></blockquote>
+<p>你的护城河从来不是"会干活"，是"知道该干什么、并且敢为结果签字"。</p>
+<hr>
+</section><section class='reveal'><h2>【速查卡】FDE 面试备战 30 题</h2><button class="collect" data-card="ch13">☆ 收进卡册</button>
+<pre><code>技术 10 题
+1. 白板设计一个生产级 RAG 系统，讲清每个组件
+2. 什么情况下微调优于 RAG？给量化标准
+3. evals 集怎么建？50 条从哪来？
+4. 准确率线上掉 7 个点，排查顺序是什么
+5. 如何防幻觉？至少讲三层防线
+6. 设计一个护栏系统，覆盖哪些风险
+7. 高并发下推理延迟恶化，怎么优化
+8. 结构化输出怎么做，失败了怎么办
+9. 数据漂移怎么检测？PSI 是什么
+10. 讲一个你做过最糟的技术决策
+
+场景 10 题
+11. 客户说&quot;我们要 AI 转型&quot;，你的前三个问题
+12. 给&quot;提升客户满意度&quot;下一个可测量的定义
+13. 客户数据质量很差，项目还做不做
+14. 预算砍 30%，你保什么砍什么
+15. 法务说数据不能出域，架构怎么改
+16. 上线后员工抵制，使用率走低，怎么办
+17. 客户 CEO 想看 ROI，你怎么算
+18. 两个部门对字段口径吵架，怎么收场
+19. demo 被竞对碾压，现场怎么接
+20. MVP 验收没过，下一步是什么
+
+沟通 10 题
+21. 向不懂技术的 CFO 解释 RAG（2 分钟版）
+22. 客户问&quot;会不会取代我的员工&quot;，怎么答
+23. 客户提了一个明知做不了的需求，怎么说不
+24. 项目延期，如何向客户汇报
+25. 如何向客户解释&quot;demo 好不等于生产好&quot;
+26. 客户要求&quot;保证 100% 准确&quot;，怎么回应
+27. 客户想自己接管运维，怎么交接
+28. 怎么向客户收费才显得不心虚
+29. 项目失败了，复盘会怎么开
+30. 反问环节：你会问面试官哪三个问题</code></pre>
+<hr>
+</section><section class='reveal'><h2>【金句海报】（全书收尾）</h2>
+<div class="poster reveal"><p>"AI 不会取代 FDE，<br>但会用 AI 的 FDE 会取代不用的。"</p><div class="sig">FDE 工程师蓝皮书</div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>面试轮次与题型：综合 Sundeep Teki《The Definitive Guide to Forward Deployed Engineer Interviews》（2026-01）、Palantir 及 AI 公司公开面经</li><li>"人形 Agent"论述：Bob McGrew 公开分享中的类比</li><li>中美市场对照：基于公开招聘信息的定性观察（中国薪酬无公开统计）</li><li>备战 30 题：本站原创，按全书章节知识点编制</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="ch12.html">← 年薪 $210K 的新物种：</a><a class="nextcard" href="toolbox.html"><span class="nc-k">下一章</span><b>工具箱：FDE 的八件装备</b><i>八件装备，拿走即用</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script></script>
+<script src="assets/app.js"></script>
+</body></html>

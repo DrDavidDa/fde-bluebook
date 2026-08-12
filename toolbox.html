@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>工具箱：FDE 的八件装备 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="八件装备，拿走即用 —— FDE 工程师蓝皮书 · 独立导航">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/toolbox.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="工具箱：FDE 的八件装备 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="八件装备，拿走即用 —— FDE 工程师蓝皮书 · 独立导航">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/toolbox.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="工具箱：FDE 的八件装备 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="八件装备，拿走即用 —— FDE 工程师蓝皮书 · 独立导航">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="toolbox" data-act="a0">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">✦</div>
+<div class="inner">
+<div class="act-tag">独立导航</div>
+<h1>工具箱：FDE 的八件装备</h1>
+<div class="teaser">八件装备，拿走即用</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+
+<section class='reveal firstsec'><h2>装备 1 ｜ 客户尽调 50 问（第 5 章完整版）</h2>
+<p><strong>A. 决策与人（10 问）</strong></p>
+<ol><li>这个项目成了，谁的功劳最大？</li><li>谁有能力让它黄，但成不了功臣？</li><li>上一个类似项目是怎么死的？</li><li>预算真实上限多少？分几期付？</li><li>验收时谁签字？签字的依据是什么？</li><li>业务方每周能投入多少真人小时？</li><li>谁是日常对接人？他有多大权限？</li><li>高层对失败的容忍度是多少？</li><li>项目委员会多久开一次会？谁必到？</li><li>有没有人在暗中反对这个项目？为什么？</li></ol>
+<p><strong>B. 痛点与价值（10 问）</strong></p>
+<ol><li>这件事现在怎么做？请演示一遍。</li><li>上个月因此最惨的一次是什么？</li><li>这个痛每月烧掉多少钱/小时？</li><li>全公司有多少个一模一样的场景？</li><li>为什么是现在做？三年前为什么没做？</li><li>没有 AI 时这问题怎么解决？（没人解决 = 伪需求）</li><li>有人为它自费买过工具吗？</li><li>AI 只做到 80 分，剩下 20 分怎么办？</li><li>明天上线，用户明天就会用吗？</li><li>成功的话，一年后哪个指标会动？动多少？</li></ol>
+<p><strong>C. 数据（10 问）</strong></p>
+<ol><li>数据在哪个系统？谁管权限？</li><li>能看 100 条真实样本吗？（不是脱敏演示版）</li><li>数据多久更新一次？谁负责质量？</li><li>字段口径有没有书面定义？几个版本？</li><li>知识库最后更新时间？维护流程是什么？</li><li>历史数据保留多久？能回溯几年？</li><li>标注数据有没有？谁标的？质量怎么验？</li><li>数据里有多少是扫描件/图片/语音？</li><li>敏感数据怎么分级？哪些绝对不能碰？</li><li>数据出问题时，找谁能 24 小时内响应？</li></ol>
+<p><strong>D. 技术与集成（10 问）</strong></p>
+<ol><li>核心系统有没有 API？文档长什么样？</li><li>上一次系统故障多久发现的？怎么发现的？</li><li>私有化、专有云、公有云，哪条是红线？</li><li>现有 IT 团队多少人？什么技术栈？</li><li>算力谁出？GPU 有没有现货？</li><li>延迟和并发的硬指标是什么？</li><li>有哪些系统是必须对接的？（CRM/ERP/OA…）</li><li>单点登录和权限体系怎么走？</li><li>日志和审计要求是什么级别？</li><li>灾备和 SLA 要求是什么？</li></ol>
+<p><strong>E. 合规与组织（10 问）</strong></p>
+<ol><li>法务和信安从哪天开始参与？</li><li>数据能否出域？有没有备案要求？</li><li>行业监管对 AI 决策有什么特殊要求？</li><li>用户协议里允许用数据训练/推理吗？</li><li>一线员工知道这个项目吗？怎么说的？</li><li>哪个部门最可能消极抵抗？为什么？</li><li>有没有"自己人"愿意当种子用户？</li><li>培训预算有没有？算在项目里吗？</li><li>上线后谁运营？编制有没有？</li><li>项目结束后，能力留在谁手里？</li></ol>
+<hr>
+</section><section class='reveal'><h2>装备 2 ｜ AI 就绪度打分卡（第 5 章）</h2>
+<table><thead><tr><th>维度</th><th>1 分（红灯）</th><th>3 分</th><th>5 分（绿灯）</th><th>得分</th></tr></thead><tbody><tr><td>战略</td><td>"老板很重视"</td><td>有年度目标</td><td>KPI 写明场景与指标</td><td>/5</td></tr><tr><td>数据</td><td>"导出来就行"</td><td>有治理但欠账</td><td>有团队、有口径、有更新机制</td><td>/5</td></tr><tr><td>技术</td><td>黑盒老系统</td><td>有 API 但文档差</td><td>网关/日志/工程团队齐备</td><td>/5</td></tr><tr><td>组织</td><td>需求走三个月流程</td><td>能开会但难拍板</td><td>业务技术同桌吵架同桌拍板</td><td>/5</td></tr><tr><td>应用</td><td>"先做个通用助手"</td><td>有场景没排序</td><td>三个具体痛点脱口而出</td><td>/5</td></tr><tr><td>合规</td><td>"先做出来再说"</td><td>法务听说过项目</td><td>法务信安从第一天在场</td><td>/5</td></tr></tbody></table>
+<p><strong>判读</strong>：总分 ≥24 且单项无 1 分 → 可进场；任一维度 1 分 → 先补该维度；总分 &lt;15 → 这单要么不接，要么先做三个月启蒙咨询。</p>
+<hr>
+</section><section class='reveal'><h2>装备 3 ｜ 任务定义卡 &amp; 验收契约（第 6 章）</h2>
+<pre><code>任务定义卡                     验收契约
+─────────────────────        ─────────────────────
+场景：______（只一个）          指标：______（有基线）
+目标：基线 ___ → 目标 ___      数据集：来源/规模/抽样
+受众：___ 人 · 频率 ___        验收人：谁盲测、谁签字
+事实源：______                 时间：____年__月__日
+输出格式：______               未达标：延期/缩范围/终止
+不做：______（红线清单）        签字：甲方 ___ 乙方 ___</code></pre>
+<hr>
+</section><section class='reveal'><h2>装备 4 ｜ ROI 测算表（第 6 章）</h2>
+<p><strong>速算</strong>（筛选用）：年净收益 ≈ 人力月成本 × 12 × 自动化率 × 0.7（校准系数）</p>
+<p><strong>精算</strong>（立项用）：</p>
+<table><thead><tr><th>收益项</th><th>计算式</th><th>金额</th></tr></thead><tbody><tr><td>人力替代</td><td>工时 × 单价 × 自动化率</td><td></td></tr><tr><td>效率增益</td><td>周期缩短 × 业务单价</td><td></td></tr><tr><td>质量收益</td><td>错误减少 × 单次损失</td><td></td></tr><tr><td>机会收益</td><td>新增服务能力 × 利用率</td><td></td></tr></tbody></table>
+<table><thead><tr><th>成本项</th><th>计算式</th><th>金额</th></tr></thead><tbody><tr><td>一次性投入</td><td>开发 + 数据工程 + 集成</td><td></td></tr><tr><td>年运营</td><td>Token/算力 + 运维人力 + 知识维护</td><td></td></tr><tr><td>隐性成本</td><td>变革管理 + 培训 + 兜底人力</td><td></td></tr></tbody></table>
+<p><strong>三条纪律</strong>：收益按 70% 打折、成本按 130% 加成、回本期 &gt;18 个月的场景不进第一期。</p>
+<hr>
+</section><section class='reveal'><h2>装备 5 ｜ 技术选型决策树（第 3、7 章）</h2>
+<pre><code>数据能出域吗？
+├─ 不能 → 私有化/专有云 → 开源模型（DeepSeek/Qwen 系）
+└─ 能 →
+   ├─ 要顶级能力且量小 → 闭源 API（GPT/Claude/Gemini）
+   ├─ 量大且成本敏感 → 开源模型 + 云推理 或 MaaS
+   └─ 混合 → 敏感内网 + 通用走 API（双轨）
+
+能力问题出在哪？
+├─ 不懂你们的知识 → RAG（+知识更新机制）
+├─ 不懂你们的格式语气 → 提示工程 + few-shot
+├─ 不懂你们的判断逻辑 → 先写规则 prompt；
+│   500+ 标注样本后仍不够 → LoRA 微调
+└─ 都不行 → 先怀疑评估集和数据，最后怀疑模型</code></pre>
+<hr>
+</section><section class='reveal'><h2>装备 6 ｜ 上线检查清单（第 8 章完整版）</h2>
+<p>见第 8 章速查卡。增补四条生产级要求：</p>
+<ul><li>□ 影子流量测试：真实请求双写，AI 结果先不对用户可见，跑 1 周对比</li><li>□ 故障演习：模拟模型服务宕机，验证降级链路</li><li>□ 成本压测：峰值流量下 Token 成本是否失控</li><li>□ 上线公告与反馈通道：用户知道在哪骂你（这很重要）</li></ul>
+<hr>
+</section><section class='reveal'><h2>装备 7 ｜ evals 模板（第 7 章）</h2>
+<pre><code>评估集结构（50 条起步）
+├─ 典型题 30 条：近 3 个月真实工单随机抽
+├─ 边界题 10 条：信息不全/多意图/口语化
+└─ 对抗题 10 条：诱导幻觉/越权/注入
+
+每条记录
+{ id, question, gold_answer, source_doc_id,
+  fatal_errors: [...], category, added_date }
+
+评分口径
+├─ 准确率：答案与 gold_answer 一致（模型判 + 人抽 10%）
+├─ 忠实度：每个事实可溯源到 source_doc_id
+└─ 拒答正确率：该拒答的题拒答率
+
+纪律：任何变更跑全量；掉分不上线；每月回流 10 条线上错题</code></pre>
+<hr>
+</section><section class='reveal'><h2>装备 8 ｜ 数据来源与参考文献</h2>
+<p><strong>核心数据报告</strong></p>
+<ol><li>MIT Project NANDA, *The GenAI Divide: State of AI in Business 2025*, 2025-08（95% / $30–40B / learning gap / 67% vs 22% / 40% vs 90%）。注：该报告为行业研究报告而非同行评审，样本未完全公开，方法论存在争议，本书所有引用均已标注口径。</li><li>Stanford Digital Economy Lab, *Enterprise AI Playbook*（Pereira, Graylin, Brynjolfsson）, 2026-03（51 个成功案例）: https://digitaleconomy.stanford.edu/app/uploads/2026/03/EnterpriseAIPlaybook_PereiraGraylinBrynjolfsson.pdf</li></ol>
+<p><strong>FDE 模式与历史</strong></p>
+<ol><li>Bob McGrew × Y Combinator, *The FDE Playbook for AI Startups*, 2025-09: https://www.ycombinator.com/library/Mt-the-fde-playbook-for-ai-startups-with-bob-mcgrew</li><li>The AI Opportunity, *Forward Deployed Engineers: The Palantir Playbook for AI Startups*, 2026-07: https://www.theaiopportunities.com/p/forward-deployed-engineers-the-palantir</li><li>*Forward Deployed: Inside the Palantir Framework*（书）: https://forwarddeployedbook.com/preface</li><li>JediTeck, *Forward Deployed Engineering: Lessons from Palantir's Original Playbook*, 2026-06: https://www.jediteck.com/blog/forward-deployed-engineering-palantir-playbook</li></ol>
+<p><strong>岗位市场与薪酬</strong></p>
+<ol><li>The New Stack, *Why OpenAI and Anthropic are hiring forward deployed engineer teams*, 2026-05: https://thenewstack.io/forward-deployed-engineers-ai/</li><li>ZenML LLMOps Database, *OpenAI: Forward Deployed Engineering for Enterprise LLM Deployments*（2→52 人）: https://www.zenml.io/llmops-database/forward-deployed-engineering-for-enterprise-llm-deployments</li><li>Anthropic 招聘页（FDE, Applied AI, $200K–300K）: https://jobs.menlovc.com/companies/anthropic/jobs/69674588-forward-deployed-engineer-applied-ai</li><li>Recruiting from Scratch, *What Does an FDE Do*（中位 base $210K）, 2026-06: https://www.recruitingfromscratch.com/blog/what-does-a-forward-deployed-engineer-do-role-salary-guide</li><li>Paraform, *Forward Deployed Software Engineer Guide*, 2026-06: https://www.paraform.com/blog/what-is-forward-deployed-software-engineer</li><li>Dexity, *Forward Deployed Engineer — The Complete 2026 Guide*, 2026-07: https://dexity.com/intel/forward-deployed-engineer-2026</li><li>Sundeep Teki, *Forward Deployed AI Engineer: Career &amp; Technical Guide*, 2026-04: https://www.sundeepteki.org/advice/forward-deployed-ai-engineer</li><li>Sundeep Teki, *The Definitive Guide to FDE Interviews in 2026*, 2026-01: https://www.sundeepteki.org/advice/the-definitive-guide-to-forward-deployed-engineer-interviews-in-2026</li><li>Trellis AI（YC）FDE 招聘, 2025-08: https://www.ycombinator.com/companies/trellis-ai/jobs/Cv3ZwXh-forward-deployed-engineers-all-levels-sept-2025</li></ol>
+<p><strong>中国市场</strong></p>
+<ol><li>CSDN, 《为什么中国企业 AI 落地更需要 FDE？》, 2026-07: https://www.csdn.net/article/2026-07-28/163276871</li><li>腾讯云开发者社区, 《FDE（前沿部署工程师）深度解析》, 2026-05: https://cloud.tencent.com/developer/article/2674646</li></ol>
+<p><strong>MIT 报告争议讨论</strong></p>
+<ol><li>Agent Mode AI, *The MIT 95% GenAI-pilot-failure claim*, 2026-06: https://agentmodeai.com/the-mit-genai-pilot-failure-claim/</li><li>On The Ground Agency, *Why 95% of AI Projects Fail (MIT, 2025)*, 2026-07: https://ontheground.agency/resources/why-ai-projects-fail-mit-2025-genai-divide</li></ol>
+<p><strong>基础书稿</strong></p>
+<ol><li>《大模型商业化实战》七章书稿（未公开出版，本项目基础素材），第 1–6 章框架经改写融入本书第 3、5–10 章。</li></ol></section>
+<div class="nextch"><a class="btn ghost" href="ch13.html">← 拿下 offer：面试官真正</a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script></script>
+<script src="assets/app.js"></script>
+</body></html>

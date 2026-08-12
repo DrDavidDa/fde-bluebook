@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>卡册与战绩 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="你的前线作战记录：读过的章、收过的卡、测过的评。集齐 11 张速查卡，解锁完结海报。">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/finish.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="卡册与战绩 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="你的前线作战记录：读过的章、收过的卡、测过的评。">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/finish.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="finish" data-act="a0">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span>
+<div class="map-links">
+<a href="index.html" data-ch="">序章</a>
+<a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a>
+<a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a>
+<a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a>
+<a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a>
+<a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a>
+<a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a>
+<a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a>
+<a href="finish.html" data-ch="finish">卡册</a>
+</div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">✦</div>
+<div class="inner">
+<div class="act-tag">卡册与战绩</div>
+<h1>你的前线作战记录</h1>
+<div class="teaser">读过的章、收过的卡、测过的评——都在这里。集齐 11 张速查卡，解锁完结海报。</div>
+</div>
+</header>
+<div class="wrap">
+
+<div class="statband" id="ov"></div>
+
+<h2>速查卡卡册（<span id="cardn">0</span> / 11）</h2>
+<div class="cardwall" id="cardwall"></div>
+
+<h2>测评战绩</h2>
+<div id="quizrec" class="quizrec"></div>
+
+<div id="finale" style="display:none">
+<h2>🎖 完结解锁</h2>
+<p>11 张速查卡集齐。你是真正读完这本书的人——生成你的完结海报，把这份战绩分享出去。</p>
+<button class="btn gold" id="mkposter">生成完结海报</button>
+<div id="posterout" style="margin-top:18px"></div>
+</div>
+
+<div class="nextch"><a class="btn ghost" href="index.html">← 回到序章</a>
+<a class="nextcard" href="ch01.html"><span class="nc-k">从头开始</span><b>第 1 章 · Palantir 藏了 15 年的岗位</b><i>重新走一遍作战链，把没集的卡补上。</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 卡册数据仅保存在你的浏览器本地</footer>
+<script src="assets/app.js"></script>
+<script>
+(function(){
+  const RS_KEY='fde-rs-v1';
+  let d={}; try{ d=JSON.parse(localStorage.getItem(RS_KEY))||{}; }catch(e){}
+  const chd=d.ch||{}, cards=d.cards||[], quiz=d.quiz||{};
+  const CHAPTERS=[["ch01","Palantir 藏了 15 年的岗位"],["ch02","OpenAI 为什么扩了 26 倍"],
+    ["ch03","失败复盘：五种死法"],["ch04","影子 AI"],["ch05","进场 72 小时"],
+    ["ch06","写成契约"],["ch07","RAG 不是银弹"],["ch08","最后 100 米"],
+    ["ch09","砾石路原理"],["ch10","前线复盘①"],["ch11","前线复盘②"],
+    ["ch12","年薪 $210K"],["ch13","拿下 offer"]];
+  const CARDS=["ch01","ch02","ch03","ch04","ch05","ch06","ch07","ch08","ch09","ch12","ch13"];
+  const CARDNAMES={ch01:"FDE / 售前 / 架构师对照卡",ch02:"技能关键词 30 个",ch03:"障碍扫描清单",
+    ch04:"需求真伪 5 问",ch05:"客户尽调 20 问",ch06:"任务定义卡 + 验收契约",ch07:"evals 起步清单",
+    ch08:"上线前夜检查清单",ch09:"交付复盘十问",ch12:"能力自评表",ch13:"面试备战 30 题"};
+  const done=CHAPTERS.filter(c=>chd[c[0]]&&chd[c[0]].done).length;
+  const pct=Math.round(CHAPTERS.reduce((a,c)=>a+((chd[c[0]]||{}).p||0),0)/CHAPTERS.length);
+  document.getElementById('ov').innerHTML=
+    '<div class="sb"><div class="n">'+pct+'%</div><div class="d">全书阅读总进度</div></div>'+
+    '<div class="sb"><div class="n">'+done+' / 13</div><div class="d">已读完章节</div></div>'+
+    '<div class="sb"><div class="n">'+cards.length+' / 11</div><div class="d">已集速查卡</div></div>';
+  document.getElementById('cardn').textContent=cards.length;
+  document.getElementById('cardwall').innerHTML=CARDS.map(id=>{
+    const got=cards.includes(id), ch=CHAPTERS.find(c=>c[0]===id);
+    return '<a class="cwcard'+(got?' got':'')+'" href="'+id+'.html">'+
+      '<div class="cwno">'+(got?'✦':'☆')+'</div>'+
+      '<div class="cwt">'+(CARDNAMES[id]||ch[1])+'</div>'+
+      '<div class="cwc">'+ch[1]+(got?'':' · 未收集，点我去拿')+'</div></a>';
+  }).join('');
+  const qr=document.getElementById('quizrec');
+  const q1=quiz.FDE_READINESS, q2=quiz.FDE_TALENT;
+  qr.innerHTML='<div class="qritem"><b>AI 就绪度测评</b>'+(q1?'<span class="qv">'+q1.total+' 分 · '+q1.verdict+'</span>':'<span class="qn">未测 · <a href="ch05.html">去第 5 章测</a></span>')+'</div>'
+    +'<div class="qritem"><b>FDE 天赋指数</b>'+(q2?'<span class="qv">'+q2.total+' 分 · '+q2.verdict+'</span>':'<span class="qn">未测 · <a href="ch12.html">去第 12 章测</a></span>')+'</div>';
+  if(cards.length>=11){
+    document.getElementById('finale').style.display='block';
+    document.getElementById('mkposter').addEventListener('click',()=>{
+      const W=760,H=920,cv=document.createElement('canvas');
+      cv.width=W*2; cv.height=H*2; cv.style.width='100%';
+      const c=cv.getContext('2d'); c.scale(2,2);
+      const g=c.createLinearGradient(0,0,W,H);
+      g.addColorStop(0,'#ffffff'); g.addColorStop(1,'#fdf3e3');
+      c.fillStyle=g; c.fillRect(0,0,W,H);
+      c.strokeStyle='#b45309'; c.lineWidth=3; c.strokeRect(28,28,W-56,H-56);
+      c.fillStyle='#b45309'; c.font='700 20px monospace'; c.textAlign='center';
+      c.fillText('FDE 工程师蓝皮书 · 完结认证', W/2, 96);
+      c.font='110px serif'; c.fillText('🎖', W/2, 260);
+      c.fillStyle='#1a2233'; c.font='800 52px serif';
+      c.fillText('前 线 毕 业', W/2, 380);
+      c.fillStyle='#5a6478'; c.font='17px sans-serif';
+      c.fillText('读完全书 13 章 · 集齐 11 张速查卡', W/2, 440);
+      c.fillText('从落地鸿沟到砾石路，作战链已全线贯通', W/2, 474);
+      if(q1){ c.fillText('AI 就绪度 '+q1.total+' 分 · '+q1.verdict, W/2, 540); }
+      if(q2){ c.fillText('FDE 天赋 '+q2.total+' 分 · '+q2.verdict, W/2, 574); }
+      c.fillStyle='#b45309'; c.font='italic 700 26px serif';
+      c.fillText('“每个项目交付两次：一次给客户，一次给产品。”', W/2, 680);
+      c.fillStyle='#98a1b3'; c.font='12px monospace';
+      c.fillText('FDE 工程师蓝皮书 · '+new Date().toISOString().slice(0,10), W/2, 860);
+      const out=document.getElementById('posterout'); out.innerHTML='';
+      out.appendChild(cv);
+      const dl=document.createElement('a'); dl.className='btn'; dl.textContent='下载完结海报';
+      dl.style.marginTop='14px'; dl.download='FDE完结海报.png'; dl.href=cv.toDataURL('image/png');
+      out.appendChild(dl);
+    });
+  }
+})();
+</script>
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Palantir 藏了 15 年的岗位 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="一群不写产品文档的工程师 —— FDE 工程师蓝皮书 · 第一幕 · 新物种">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch01.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="Palantir 藏了 15 年的岗位 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="一群不写产品文档的工程师 —— FDE 工程师蓝皮书 · 第一幕 · 新物种">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch01.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Palantir 藏了 15 年的岗位 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="一群不写产品文档的工程师 —— FDE 工程师蓝皮书 · 第一幕 · 新物种">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch01" data-act="a1">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">01</div>
+<div class="inner">
+<div class="act-tag">第一幕 · 新物种</div>
+<h1>Palantir 藏了 15 年的岗位</h1>
+<div class="teaser">一群不写产品文档的工程师</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">+800%</div><div class="d">2025.1–9 FDE 岗位发布量涨幅</div></div><div class="sb"><div class="n">2016</div><div class="d">这一年 FDE 人数反超产品工程师</div></div><div class="sb"><div class="n">$210K</div><div class="d">美国市场中位基本薪资</div></div></div>
+<section class='reveal firstsec'><h2>【开场】一群不写产品文档的工程师</h2>
+<p>2000 年代末，Palantir 拿到早期政府客户合同，撞上一个很现实的问题：产品是通用的，但没有任何两个客户的数据、系统、工作流程相同。销售说"能解决"，产品说"功能都有"，中间隔着一条没人填的沟——<strong>谁把通用产品塞进客户乱七八糟的真实世界里？</strong></p>
+<p>Palantir 的答案不是写更厚的实施文档，而是把工程师直接"部署"到客户现场——内部叫 <strong>Delta</strong>。</p>
+<p>这批人不写产品文档、不做 PPT，直接看真实数据、当场写代码，在客户办公室一驻几个月。</p>
+<p>这就是 Forward Deployed Engineer 的原型。Palantir 把它藏了十几年，直到大模型时代，全行业突然发现自己也需要这种人。</p>
+<hr>
+</section><section class='reveal'><h2>【场 1】Delta 与 Dev：一场组织实验</h2>
+<div class="scrolly" data-scene="powermap"><div class="stage"><div class="component"><div class="cap">权力地图 · 先画人，再谈技术</div><div class="echart" data-chart="powermap" style="height:430px"></div></div></div><div class="steps"><div class="sstep"><div class="card"><b>掏钱的人</b><br>高影响、支持——你的项目 Sponsor。但别只盯着他，他批了预算不代表项目能活。</div></div><div class="sstep"><div class="card"><b>用的人</b><br>低影响、支持——你的种子用户和情报来源。先让一线爽，口碑会替你上楼。</div></div><div class="sstep"><div class="card"><b>挡路的人</b><br>高影响、警惕——“先约他喝咖啡”。他成不了功臣，但握着你唯一的否决票。</div></div><div class="sstep"><div class="card"><b>埋数据的人</b><br>低影响、中立——掌握数据钥匙的人。没有他开门，你寸步难行。</div></div></div></div>
+<p>Palantir 很早就把工程师分成两类。这不是分工，是两种世界观：</p>
+<table><thead><tr><th></th><th><strong>Dev（产品工程师）</strong></th><th><strong>Delta（FDE）</strong></th></tr></thead><tbody><tr><td>战场</td><td>总部，代码仓库</td><td>客户现场，真实业务</td></tr><tr><td>产出</td><td>平台与产品功能</td><td>让客户的问题在当下被解决</td></tr><tr><td>时间尺度</td><td>季度与年度</td><td>天与周</td></tr><tr><td>代码寿命</td><td>维护十年</td><td>可能只活一个项目</td></tr><tr><td>成功标准</td><td>优雅、通用、可扩展</td><td>客户的核心指标动了</td></tr></tbody></table>
+<p>传统软件公司质疑：一次性代码、绑定单一客户、人不走项目就动不了——太"不可扩展"。</p>
+<p>Palantir 用结果回答：<strong>2016 年，FDE 人数超过了产品工程师。</strong> 一个软件公司，现场工程师比产品工程师还多——离经叛道，但它成立：客户为"问题被解决"付的钱，远多于为"软件本身"付的钱。这套"先亏后赚"的曲线，第 9 章《砾石路原理》完整拆。</p>
+<hr>
+</section><section class='reveal'><h2>【场 2】为什么 2025 年全行业突然都需要 FDE</h2>
+<p>Palantir 的模式沉睡十几年，被大模型一夜激活。三个原因：</p>
+<p><strong>① 大模型天然缺最后一公里。</strong> 它是一个什么都会一点、但对你的业务一无所知的"高智商实习生"——把它变成合格员工，得有人教它你的业务。这就是 FDE 干的活。</p>
+<p><strong>② 落地鸿沟被数据摆上台面。</strong> MIT NANDA 2025 报告：95% 的企业 GenAI 项目无可衡量 P&amp;L 影响，核心归因是"学习鸿沟"。补鸿沟的不是更好的模型，是<strong>懂业务、能动手、常驻现场的人</strong>。</p>
+<p><strong>③ 供给端验证了模式。</strong> OpenAI 的 FDE 团队 2025 年初 2 人、年底扩到 52 人；Anthropic 设岗，年薪 20–30 万美元；a16z 直接称 FDE 为"科技行业最热门的岗位"——2025 年 1 月到 9 月，岗位发布量涨超 800%。</p>
+<p>薪酬和招聘量同时暴涨，只有两种可能：泡沫，或者市场终于为一直被低估的价值定价了。本书赌后者。</p>
+
+<hr>
+</section><section class='reveal'><h2>【场 3】FDE 到底是谁：五个相邻岗位的边界</h2>
+<p>岗位名字越来越乱。一张对照卡划清边界——区别不在技能，在<strong>为谁的结果负责</strong>：</p>
+<table><thead><tr><th>岗位</th><th>写代码吗</th><th>见客户吗</th><th>对什么负责</th></tr></thead><tbody><tr><td>售前工程师</td><td>演示级</td><td>签约前</td><td>把产品讲明白，赢下订单</td></tr><tr><td>解决方案架构师</td><td>设计级</td><td>偶尔</td><td>方案的技术正确性</td></tr><tr><td>交付/实施工程师</td><td>按方案施工</td><td>现场</td><td>按计划完成部署</td></tr><tr><td>TAM/客户成功</td><td>不写</td><td>持续</td><td>续约与使用率</td></tr><tr><td>咨询顾问</td><td>不写</td><td>现场</td><td>建议的质量</td></tr><tr><td><strong>FDE</strong></td><td><strong>生产级</strong></td><td><strong>常驻</strong></td><td><strong>客户的业务指标</strong></td></tr></tbody></table>
+<p>一句话：<strong>售前对签约负责，架构师对方案负责，交付对计划负责，FDE 对结果负责。</strong> 别的岗位都能"交差"，只有 FDE 的考卷写在客户的损益表上。</p>
+<hr>
+</section><section class='reveal'><h2>【场 4】这个岗位适合你吗：先做一道快筛</h2>
+<p>FDE 不是升级版程序员，也不是会写代码的咨询顾问。三种人在里面如鱼得水：</p>
+<ul><li><strong>领域反叛者</strong>：懂一个行业，又受不了它的低效，总想"这事明明可以不这样做"；</li><li><strong>原型快手</strong>：给他一个模糊需求，48 小时交出能跑的 demo，且不为代码丑陋失眠；</li><li><strong>高带宽沟通者</strong>：上午和 CTO 聊架构，下午和一线员工聊怎么干活，两边都觉得"这人是自己人"。</li></ul>
+<p>McGrew 的用人标准很直白：<strong>不要忠诚的执行者和精致的工匠，要能忍受混乱、在模糊里开路的人。</strong> 看到"需求不明确"就烦躁——这岗位会要你的命；看到它就兴奋——继续往下读。</p>
+<hr>
+<div class="component reveal"><div class="cap">编年史 · 滚动时间线</div><div class="timeline"><div class="tl-item"><div class="yr">2003</div><div class="tx">Palantir 成立，瞄准反恐数据</div></div><div class="tl-item"><div class="yr">2010 前后</div><div class="tx">Delta 诞生：工程师进驻客户现场</div></div><div class="tl-item hot"><div class="yr">2016</div><div class="tx">FDE 人数反超产品工程师</div></div><div class="tl-item"><div class="yr">2020</div><div class="tx">纽交所上市，模式被写进财报</div></div><div class="tl-item"><div class="yr">2024 末</div><div class="tx">OpenAI 组建 FDE 团队</div></div><div class="tl-item hot"><div class="yr">2025</div><div class="tx">岗位 +800% · Anthropic 设岗</div></div><div class="tl-item hot"><div class="yr">2026</div><div class="tx">全球大厂跟进，中国讨论升温</div></div></div></div>
+</section><section class='reveal'><h2>【速查卡】一图看懂 FDE 是谁、不是什么</h2><button class="collect" data-card="ch01">☆ 收进卡册</button>
+<pre><code>FDE 是：
+□ 驻扎客户现场的生产级工程师
+□ 对客户业务指标负责的人
+□ 把现场 hack 沉淀成产品的人（砾石路→柏油路）
+□ 在模糊需求里开路的人
+
+FDE 不是：
+□ 售前——不为签约负责，为结果负责
+□ 外包——交付两次：给客户，也给产品
+□ 咨询——建议不值钱，跑起来的系统才值钱
+□ 客服——不是响应需求，是定义问题</code></pre>
+<hr>
+</section><section class='reveal'><h2>【金句海报】</h2>
+<div class="poster reveal"><p>"软件公司卖的是产品，<br>Palantir 卖的是'有人替你把它用起来'。"</p><div class="sig">FDE 工程师蓝皮书</div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>Delta/Dev 双轨制、2016 年 FDE 人数反超：Palantir 公开历史资料及多篇 FDE 模式拆解（jediteck.com，2026-06；getperspective.ai，2026-05）</li><li>岗位 +800%、a16z"最热岗位"：The New Stack（2026-05）及 a16z 相关论述</li><li>OpenAI 2→52 人：ZenML LLMOps Database（2025）；Anthropic 薪酬：Anthropic 官方招聘页（2026-03，$200K–300K）</li><li>用人标准：Bob McGrew × YC《The FDE Playbook for AI Startups》，2025-09</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="index.html">← 序章</a><a class="nextcard" href="ch02.html"><span class="nc-k">下一章</span><b>OpenAI 为什么一年把这个团队扩了 26 倍</b><i>增速最快的团队不在研究院</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script src="assets/vendor/echarts.min.js"></script><script src="assets/fde-theme.js"></script><script src="assets/charts.js"></script><script></script>
+<script src="assets/app.js"></script>
+</body></html>

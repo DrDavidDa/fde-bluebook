@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenAI 为什么一年把这个团队扩了 26 倍 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="增速最快的团队不在研究院 —— FDE 工程师蓝皮书 · 第一幕 · 新物种">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch02.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="OpenAI 为什么一年把这个团队扩了 26 倍 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="增速最快的团队不在研究院 —— FDE 工程师蓝皮书 · 第一幕 · 新物种">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch02.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenAI 为什么一年把这个团队扩了 26 倍 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="增速最快的团队不在研究院 —— FDE 工程师蓝皮书 · 第一幕 · 新物种">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch02" data-act="a1">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">02</div>
+<div class="inner">
+<div class="act-tag">第一幕 · 新物种</div>
+<h1>OpenAI 为什么一年把这个团队扩了 26 倍</h1>
+<div class="teaser">增速最快的团队不在研究院</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">2→52</div><div class="d">OpenAI FDE 团队 2025 年人数</div></div><div class="sb"><div class="n">$200–300K</div><div class="d">Anthropic FDE 岗位年薪</div></div><div class="sb"><div class="n">100+</div><div class="d">招聘 FDE 的 YC 公司</div></div></div>
+<section class='reveal firstsec'><h2>【开场】增速最快的团队不在研究院</h2>
+<p>2025 年初，OpenAI 内部一个 2 人小团队开始招人。到年底，52 人——<strong>26 倍，比很多研究团队都快。</strong></p>
+<p>它不做模型训练，不发论文。它叫 Forward Deployed Engineering。</p>
+<p>同一时期，Anthropic 挂出同名岗位，年薪 20–30 万美元；100 多家 YC 创业公司在招人需求里写下同一个职位——三年前，这个数字约等于零。</p>
+<p>当最懂模型的公司把最多的筹码押在"把模型用起来的人"身上，信号已经明确：<strong>模型的军备竞赛打到下半场，稀缺的不是更强的模型，是让模型在客户现场创造价值的能力。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【场 1】拆解一份真实的 JD</h2>
+<div class="component reveal"><div class="cap">一份顶级 JD 的解剖（Anthropic · FDE Applied AI）</div><div class="chgrid"><div class="chcard"><div class="t">深入客户业务与数据</div><div class="d">看懂客户靠什么赚钱，不只是用什么框架</div></div><div class="chcard"><div class="t">构建生产级 LLM 应用</div><div class="d">扛流量、可运维的真系统，不是 demo</div></div><div class="chcard"><div class="t">与研究/产品团队反馈</div><div class="d">你是前线传感器，痛点传回模型迭代</div></div><div class="chcard"><div class="t">设计评估体系</div><div class="d">evals 是必选项，不是加分项</div></div><div class="chcard"><div class="t">模糊中自主推进</div><div class="d">没有产品经理给你写 PRD</div></div></div><p style="text-align:center;color:var(--dim);font-size:13px">薪酬带：$200K–300K（2026-03 官方招聘页）</p></div>
+<p>上面解剖卡里的五块要求，没有一块是传统软件工程师岗位的核心。</p>
+<p>再对比 Palantir 时代的传统 FDE，<strong>AI FDE 多出四项新技能</strong>，每项都对应大模型的特性：</p>
+<ol><li><strong>模型选型与评估</strong>：十几个模型各有短长，为具体场景选对那个，并用数据证明选对了；</li><li><strong>evals 工程</strong>：模型输出是概率性的，没有评估体系就谈不上交付质量（第 7 章详解）；</li><li><strong>提示工程与上下文工程</strong>：把客户业务知识"喂"给模型的手艺；</li><li><strong>Agent 编排</strong>：任务超出单次问答时，设计多步骤、带工具调用的工作流。</li></ol>
+<hr>
+</section><section class='reveal'><h2>【场 2】为什么是他们：AI 公司自建 FDE 的账</h2>
+<div class="component reveal"><div class="cap">OpenAI FDE 团队 · 2025 年扩张曲线</div><div class="echart" data-chart="growth" style="height:380px"></div><p style="text-align:center;color:var(--dim);font-size:13px">2 → 52 人，×26。OpenAI 当年扩张最快的团队之一，不是研究院。来源：ZenML LLMOps Database</p></div>
+<p>有人质疑：卖 API 就行，为什么养这么贵的现场团队？算三笔账。</p>
+<p><strong>第一笔：企业客户买的不是 token，是结果。</strong> 年调用额千万级的大客户，项目失败流失的不只是收入，是"这个模型不行"的市场口碑。这个团队保的是企业收入的续费率。</p>
+<p><strong>第二笔：前线是最好的产品传感器。</strong> 金融、医疗、制造现场的真实问题，实验室里永远造不出来。FDE 传回的每个失败案例，都可能变成下一代模型的改进方向——OpenAI 让首席研究官出身的人来讲 FDE 方法论，不是巧合。</p>
+<p><strong>第三笔：MIT 报告里那条 67% vs 22%。</strong> 外购专业厂商方案的成功率约是内部自建的 3 倍。把 FDE 打包进合同，等于给产品附赠一份"成功率保险"——这是能写进价格里的。</p>
+<hr>
+</section><section class='reveal'><h2>【场 3】溢出效应：从巨头到创业公司</h2>
+<p>巨头的动作迅速向下渗透，形成三个梯队：</p>
+<ul><li><strong>模型厂</strong>（OpenAI、Anthropic、Google）：FDE 服务旗舰客户，任务是"拿下标杆、反哺模型"。</li><li><strong>应用公司</strong>（Sierra、Decagon、Harvey 及 100+ YC 公司）：FDE 就是核心交付模式本身——垂直场景没有通用产品形态，必须靠前部署一个个客户打下来。对这些公司，FDE 团队不是成本中心，<strong>就是销售+交付+产品的合体</strong>。</li><li><strong>甲方自建</strong>：大企业开始设内部"类 FDE"角色，不再等供应商，自己养懂业务又懂模型的人。这个趋势在中国尤其值得关注：私有化部署需求强、行业 know-how 深、服务商良莠不齐，<strong>甲方自建 FDE 能力可能是中国企业的更优解</strong>（第 11 章展开）。</li></ul>
+<p>三个梯队，同一个判断：<strong>AI 落地的瓶颈不在模型侧，在部署侧。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【场 4】对个人的启示：风口上的正确姿势</h2>
+<p>岗位一年涨 800%，机会真实存在，泡沫也正在生成。面试时反问三个问题，分辨"真 FDE"和"贴牌的实施工程师"：</p>
+<ol><li><strong>"这个岗位对客户的哪个业务指标负责？"</strong>——答不上来或答"对交付里程碑负责"的，是实施岗；</li><li><strong>"现场的经验如何回流到产品？"</strong>——没有机制的，是外包队；</li><li><strong>"团队里最资深的 FDE 现在做什么？"</strong>——都在重复做同类项目的实施、没有沉淀与泛化，那只是名字叫 FDE。</li></ol>
+<p>真金岗位三个标志：对业务指标负责、有产品回路、人随项目成长而非磨损。第 13、14 章会把能力模型和面试攻略彻底拆开讲。</p>
+<hr>
+</section><section class='reveal'><h2>【速查卡】FDE 技能关键词 30 个（按 JD 词频归类）</h2><button class="collect" data-card="ch02">☆ 收进卡册</button>
+<pre><code>工程底座：Python/TypeScript · API 设计 · 数据管道
+          SQL · 云原生部署 · 系统集成 · 可观测性
+LLM 专项：模型选型 · evals · 提示工程 · RAG
+          微调（LoRA）· 结构化输出 · 护栏设计
+          Agent 编排 · 上下文工程 · 成本优化
+业务交付：领域建模 · 需求挖掘 · 利益相关者管理
+          MVP 定义 · ROI 测算 · 变革管理
+软技能：  模糊中推进 · 跨层沟通 · 现场决策
+          技术写作 · 风险预判 · 客户预期管理</code></pre>
+<blockquote><p>*卡片设计：四色分组，词频越高字号越大——一眼看清这个岗位的技能重心在哪。*</p></blockquote>
+<hr>
+</section><section class='reveal'><h2>【金句海报】</h2>
+<div class="poster reveal"><p>"模型能力过剩，落地能力稀缺——<br>溢价永远属于后者。"</p><div class="sig">FDE 工程师蓝皮书</div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>OpenAI FDE 团队 2→52 人：ZenML LLMOps Database（2025 年底数据）</li><li>Anthropic FDE 岗位与 $200K–300K 薪酬：Anthropic 官方招聘页（2026-03）</li><li>100+ YC 公司招聘 FDE：The AI Opportunity（2026-07）</li><li>67% vs 22% 成功率：MIT NANDA《GenAI Divide》（2025-08），build vs buy 口径</li><li>五块 JD 要求归纳：基于 Anthropic/OpenAI 公开招聘启事的提炼</li><li>"Palantir 自称 Gen AI 提速"类说法见第 9 章来源</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="ch01.html">← Palantir 藏了 15</a><a class="nextcard" href="ch03.html"><span class="nc-k">下一章</span><b>失败复盘：五种死法</b><i>每个坑前面都有一块警示牌</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script src="assets/vendor/echarts.min.js"></script><script src="assets/fde-theme.js"></script><script src="assets/charts.js"></script><script></script>
+<script src="assets/app.js"></script>
+</body></html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>前线复盘①：让 FCR 冲到 90% 的保险项目 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="那通凌晨两点的电话 —— FDE 工程师蓝皮书 · 第四幕 · 前线与身价">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch10.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="前线复盘①：让 FCR 冲到 90% 的保险项目 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="那通凌晨两点的电话 —— FDE 工程师蓝皮书 · 第四幕 · 前线与身价">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch10.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="前线复盘①：让 FCR 冲到 90% 的保险项目 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="那通凌晨两点的电话 —— FDE 工程师蓝皮书 · 第四幕 · 前线与身价">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch10" data-act="a4">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">10</div>
+<div class="inner">
+<div class="act-tag">第四幕 · 前线与身价</div>
+<h1>前线复盘①：让 FCR 冲到 90% 的保险项目</h1>
+<div class="teaser">那通凌晨两点的电话</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">90%+</div><div class="d">改造后的首次联系解决率</div></div><div class="sb"><div class="n">-80%</div><div class="d">转人工服务量降幅</div></div><div class="sb"><div class="n">7×24</div><div class="d">全天候服务可用性</div></div></div>
+<section class='reveal firstsec'><h2>【开场】那通凌晨两点的电话</h2>
+<p>凌晨 2 点，一位车主在高速上出了事故，打电话报案、问理赔流程。</p>
+<ul><li><strong>改造前</strong>：语音导航转三层，坐席已下班，留言等天亮；</li><li><strong>改造后</strong>：AI 客服 8 秒接通，核实保单，讲清拍照要点和材料清单，同步生成报案工单。</li></ul>
+<p>这不是科幻，是改造后的日常。本章复盘：<strong>一家大型保险集团如何用大模型把客服中心从"成本中心"改造成"价值中心"</strong>的关键决策。</p>
+<hr>
+</section><section class='reveal'><h2>【场 1】痛点快照：为什么保险客服是完美靶子</h2>
+<p>第 5 章的诊断框架下，保险客服是教科书级理想场景：</p>
+<ul><li><strong>高频重复</strong>：70–80% 咨询是保单查询、理赔流程——AI 最佳射程；</li><li><strong>成本刚性</strong>：人力密集，高峰排队，7×24 靠人力扛不起；</li><li><strong>质量波动</strong>：同题不同坐席答案不一，体验像抽签；</li><li><strong>有据可查</strong>：条款、流程、FAQ 完备，数据就绪度不低。</li></ul>
+<p>雷区也明确：金融级合规、数据敏感、回答可追溯。<strong>痛点真实、材料可用、红线清晰——三者齐备，才值得进场。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【场 2】关键决策：三个分叉路口</h2>
+<p><strong>决策一：底座怎么选？</strong></p>
+<ul><li>自研金融大模型：贵、慢、效果不确定——排除；</li><li>通用客服机器人：接不住保险专业场景——排除；</li><li><strong>最终选择：DeepSeek 等成熟大模型做底座，私有化部署 + 深度定制</strong>——中文强、MoE 推理便宜、数据主权在手，性能、成本、合规的三角平衡。</li></ul>
+<p><strong>决策二：微调还是 RAG？</strong> <strong>RAG 优先，不急于微调</strong>：条款更新快，改知识库比重训敏捷；回答挂来源可溯源——金融监管就要这个；幻觉用"检索 + 校验"压制，不赌模型记性（第 7 章决策树）。</p>
+<p><strong>决策三：大爆炸上线还是 MVP？</strong> MVP 只做文本渠道常见问答，用户限内测与资深坐席，高风险场景（理赔金额、保单变更）不做。<strong>范围砍到一个场景的一条链路。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【场 3】惊险时刻：上线前后真正难的三件事</h2>
+<p><strong>① 准确性的"最后一公里"。</strong> 95% 听着很好，剩下 5% 足以摧毁信任。解法不是堆模型，是<strong>置信度路由 + 校验层</strong>：低置信度转人工；金额、日期、条款编号二次校验；思维链供复核。</p>
+<p><strong>② 高并发的工程硬仗。</strong> 月末进线数倍于平时。解法：微服务、多级缓存、异步队列削峰、全链路监控——第 8 章上线清单逐条兑现。</p>
+<p><strong>③ 坐席的"静默抵抗"。</strong> 提前做变革管理：AI 接走重复咨询，人升级为复杂问题专家 + AI 训练师；坐席参与标注验收；考核加入"知识贡献"。<strong>结果：转人工率没被人为推高——系统没被用户抵制。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【场 4】战果表</h2>
+<div class="component reveal"><div class="cap">战果对照 · 改造前 vs 改造后</div><div class="echart" data-chart="kpi" style="height:340px"></div><p style="text-align:center;color:var(--dim);font-size:13px">口径：公开报道 + 行业推断</p></div>
+<table><thead><tr><th>指标</th><th>改造前</th><th>改造后</th><th>口径</th></tr></thead><tbody><tr><td>服务可用性</td><td>工作时间为主</td><td><strong>7×24 全天候</strong></td><td>公开报道</td></tr><tr><td>在线接通率</td><td>约 30%</td><td><strong>90%+</strong></td><td>公开报道（智能客服上线后）</td></tr><tr><td>转人工服务量</td><td>基线</td><td><strong>下降 80%+</strong></td><td>公开报道</td></tr><tr><td>首次联系解决率（FCR）</td><td>约 60–70%（行业估算）</td><td><strong>90%+</strong></td><td>基于公开资料与行业经验推断</td></tr><tr><td>简单咨询响应</td><td>高峰排队分钟级</td><td><strong>秒级</strong></td><td>推断</td></tr></tbody></table>
+<p><strong>深层收益</strong>：客服从成本中心变数据资产中心——对话沉淀洞察，反哺产品和风控。</p>
+<hr>
+</section><section class='reveal'><h2>【场 5】FDE 教训卡</h2>
+<ol><li><strong>RAG 的可溯源性在强监管行业不是优点，是入场券。</strong> 金融、医疗、政务，先问"能不能溯源"，再谈模型能力。</li><li><strong>私有化部署的决策不是技术题，是合规题。</strong> 先过法务，再过架构评审，顺序不能反。</li><li><strong>"AI 训练师"是变革管理最聪明的设计。</strong> 把最可能抵制系统的人变成系统的老师——升级叙事必须具体，不能是口号。</li><li><strong>MVP 的价值不是"快"，是"便宜地犯错"。</strong> 内测发现的 100 个问题，任何一个放到真实客户那里都可能是事故。</li><li><strong>数据闭环才是长期壁垒。</strong> 模型会被替换，"服务—反馈—学习—优化"的飞轮转起来，别人抄不走。</li></ol>
+<hr>
+</section><section class='reveal'><h2>【名场面】六层架构拆解图</h2>
+<div class="component reveal"><div class="cap">智能客服中枢 · 六层架构（点击展开）</div><div class="layers"><div class="layer"><span class="tag">L1</span><div class="lt">接入层</div><div class="ld">App / 微信 / 网页 / 电话语音统一入口，全渠道一致体验</div></div><div class="layer"><span class="tag">L2</span><div class="lt">对话管理与 AI 编排层</div><div class="ld">意图识别、多轮状态机、转人工路由——系统大脑</div></div><div class="layer"><span class="tag">L3</span><div class="lt">AI 核心能力层</div><div class="ld">大模型服务 + RAG 检索 + 规则校验层，回答可溯源</div></div><div class="layer"><span class="tag">L4</span><div class="lt">知识管理与数据层</div><div class="ld">条款库 / FAQ / 工单语料分库治理，版本化更新</div></div><div class="layer"><span class="tag">L5</span><div class="lt">人机协作与运营层</div><div class="ld">坐席辅助、AI 训练师工作台、质检与回流</div></div><div class="layer"><span class="tag">L6</span><div class="lt">支撑与集成层</div><div class="ld">CRM、保单核心系统、权限审计、监控告警</div></div></div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>案例主体：改写自原书稿第 6 章 6.1（基于太保智能客服公开报道的推演式案例研究）</li><li>接通率 90%+、转人工下降 80%+：中国太平洋保险公开报道《太平洋寿险上线首款客户端智能客服机器人》</li><li>FCR 60–70% 基线与 90%+ 目标值：原书稿标注"基于公开资料与行业经验推断"，本书沿用该口径</li><li>六层架构、置信度路由、变革管理细节：原书稿 + 行业通用实践归纳</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="ch09.html">← 砾石路原理：别把天赋浪费成高</a><a class="nextcard" href="ch11.html"><span class="nc-k">下一章</span><b>前线复盘②：2026 的新前线</b><i>同一个岗位，三种活法</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script src="assets/vendor/echarts.min.js"></script><script src="assets/fde-theme.js"></script><script src="assets/charts.js"></script><script></script>
+<script src="assets/app.js"></script>
+</body></html>

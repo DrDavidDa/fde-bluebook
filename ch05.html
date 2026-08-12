@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>进场 72 小时 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="周一上午 9:07 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch05.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="进场 72 小时 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="周一上午 9:07 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch05.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="进场 72 小时 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="周一上午 9:07 —— FDE 工程师蓝皮书 · 第三幕 · 作战链">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch05" data-act="a3">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">05</div>
+<div class="inner">
+<div class="act-tag">第三幕 · 作战链</div>
+<h1>进场 72 小时</h1>
+<div class="teaser">周一上午 9:07</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">72 小时</div><div class="d">决定项目生死的进场窗口</div></div><div class="sb"><div class="n">6 维</div><div class="d">AI 就绪度打分维度</div></div><div class="sb"><div class="n">20 问</div><div class="d">本章速查卡尽调问题数</div></div></div>
+<section class='reveal firstsec'><h2>【开场】周一上午 9:07</h2>
+<p>会议室里，客户 CIO 正在放第 23 页 PPT，标题是《AI 赋能数字化转型三年规划》。</p>
+<p>销售在点头。你在笔记本上写的是另一份清单：</p>
+<ul><li>他说"数据都在系统里"——哪个系统？谁管权限？没说。</li><li>业务总监全程没说话，CIO 每讲一页却看他一眼。真正的决策人，可能不是放 PPT 的这个。</li><li>提到去年的"智能问答"项目时，IT 经理低头看手机。<strong>这个组织里埋着一个失败项目的残骸。</strong></li></ul>
+<p>72 小时后你要交出《客户诊断报告》——它的质量，已经决定了项目的生死。</p>
+<p>进场不是开始工作，是决定<strong>要不要工作、为谁工作、从哪下刀</strong>。</p>
+<hr>
+</section><section class='reveal'><h2>【场 1】先看人，再看技术</h2>
+<p>新手进场先了解系统。老手进场先画<strong>人</strong>。</p>
+<p>客户组织里只有四种人，所有信息按这四类归档：</p>
+<table><thead><tr><th>角色</th><th>识别特征</th><th>你要从他那里得到什么</th></tr></thead><tbody><tr><td><strong>掏钱的人</strong></td><td>问的第一类问题是"这和战略有什么关系"</td><td>预算的真实上限、他最在意的那个指标</td></tr><tr><td><strong>用的人</strong></td><td>坐在会议室后排，被要求"也来听听"</td><td>每天真实的工作流、最烦的三件事</td></tr><tr><td><strong>挡路的人</strong></td><td>频繁提到"安全""合规""流程"</td><td>他的否决点在哪、怎么变成合作点</td></tr><tr><td><strong>埋数据的人</strong></td><td>全公司只有他知道那张表在哪</td><td>数据的真实位置、质量和口径</td></tr></tbody></table>
+<p><strong>画权力地图只问三个问题</strong>：项目成了，谁受益最大？黄了，谁最无所谓？谁有能力让它黄，却成不了功臣？</p>
+<p>第三个问题指向的人，第一个约咖啡。</p>
+<hr>
+</section><section class='reveal'><h2>【场 2】AI 就绪度：六个维度，各有一句话判据</h2>
+<div class="component reveal"><div class="cap">就绪度雷达 · 健康样本 vs 失败样本</div><div class="echart" data-chart="readiness" style="height:440px"></div></div>
+<p>别问"你们准备好了吗"——没人会说没准备好。按六个维度分别打分，每个维度都有一句<strong>现场判据</strong>：</p>
+<table><thead><tr><th>维度</th><th>现场判据（听到什么打高分）</th><th>红灯信号</th></tr></thead><tbody><tr><td><strong>战略</strong></td><td>"我们今年 KPI 里有一条就是落地两个 AI 场景"</td><td>"老板很重视"（但说不清重视什么）</td></tr><tr><td><strong>数据</strong></td><td>"核心系统的数据我们有专门的团队治理"</td><td>"数据都在系统里，你们导出来就行"</td></tr><tr><td><strong>技术</strong></td><td>有 API 网关、有日志、有像样的工程团队</td><td>核心系统还是十年前外包写的黑盒</td></tr><tr><td><strong>组织</strong></td><td>业务和技术能坐在同一张桌子上吵架</td><td>需求要"先走个流程"，流程是三个月</td></tr><tr><td><strong>应用</strong></td><td>能立刻说出三个具体痛点场景</td><td>"我们先做个通用的智能助手"</td></tr><tr><td><strong>合规</strong></td><td>法务从第一天就参与</td><td>"先做出来，合规后面再说"</td></tr></tbody></table>
+<p>六维各 1–5 分，画成雷达图。<strong>任何一维低于 2 分，不是"先做着看"，是先补那一维</strong>——否则项目会在那一关准时翻车。</p>
+<hr>
+</section><section class='reveal'><h2>【场 3】PASTA：五个字母，问出真相</h2>
+<p>问什么？用 PASTA 组织访谈——一盘浇头面：浇头（问题）决定味道。</p>
+<p><strong>P · Problem（痛点）</strong></p>
+<ul><li>"这件事现在怎么做？演示一遍，别讲流程图。"</li><li>"上个月最惨的一次是什么情况？"</li></ul>
+<p><strong>A · Ability（可 AI 化）</strong></p>
+<ul><li>"判断对错靠规则，还是靠老师傅的感觉？"</li><li>"新人多久能学会？三个月以内的事，AI 大概率能辅助。"</li></ul>
+<p><strong>S · Scalability（可扩展）</strong></p>
+<ul><li>"全公司有多少个类似场景？"</li><li>"做成了，隔壁部门会眼红，还是说'我们不一样'？"</li></ul>
+<p><strong>T · Timing（时机）</strong></p>
+<ul><li>"为什么是现在？三年前为什么没做？"</li><li>"未来六个月，哪个 deadline 已经定死？"</li></ul>
+<p><strong>A · Action（资源）</strong></p>
+<ul><li>"谁拍板？谁出数据？谁出人配合？"</li><li>"MVP 阶段，你们团队每周能出多少小时？"</li></ul>
+<p>每条都落到<strong>书面记录</strong>，访谈完 24 小时内发回客户确认。三个月后那场"我们当时不是这么说的"会上，它能救你的命。</p>
+<hr>
+</section><section class='reveal'><h2>【场 4】无在位者测试：这单，接还是不接</h2>
+<p>Palantir 系方法论里有一条冷酷的筛选器，来自 Bob McGrew（前 Palantir 产品负责人、前 OpenAI 首席研究官）：</p>
+<blockquote><p><strong>如果客户的问题已经有现成软件能解决，你就不该出现在这里。</strong></p></blockquote>
+<p>这就是<strong>无在位者测试（No-Incumbent Test）</strong>。客户只需要"买个 CRM""上个 BI"？让 SaaS 去干，你进场只会陷入价格战。只有<strong>问题真实、重要、且没有在位方案</strong>的交界处，FDE 才有存在理由——位置很窄，但利润和护城河都在那里。</p>
+<p><strong>接 / 不接决策树</strong>：</p>
+<pre><code>痛点真实且高频？──否──→ 礼貌退出
+        │是
+现有软件能解决？──是──→ 推荐现成方案，交个朋友
+        │否
+数据/权限可获取？──否──→ 先补数据，或放弃
+        │否
+有明确的掏钱人？──否──→ 继续培育，别开工
+        │是
+        ▼
+      接。</code></pre>
+<p>放弃一单不是失败。FDE 最稀缺的是你的时间——押错客户才是。</p>
+<hr>
+</section><section class='reveal'><h2>【名场面】交互引擎①：你的公司 AI 就绪度有几分</h2>
+<div class="component reveal quiz" data-quiz="FDE_READINESS"><div class="cap">交互测评 · 你的公司 AI 就绪度有几分</div></div>
+<hr>
+</section><section class='reveal'><h2>【速查卡】客户尽调 20 问</h2><button class="collect" data-card="ch05">☆ 收进卡册</button>
+<p><strong>看人</strong></p>
+<ol><li>这个项目成了，谁的功劳最大？</li><li>谁有能力让它黄，但成不了功臣？</li><li>上一个类似项目是怎么死的？</li><li>每周几小时，你们团队能真人配合？</li><li>预算的真实上限和付款节奏是什么？</li></ol>
+<p><strong>看痛点</strong></p>
+<ol><li>这件事现在怎么做？请演示一遍。</li><li>上个月最惨的一次是什么情况？</li><li>这个痛，每月烧掉多少钱/多少小时？</li><li>全公司有多少个一模一样的场景？</li><li>为什么是现在做？三年前呢？</li></ol>
+<p><strong>看数据</strong></p>
+<ol><li>数据在哪个系统？谁管权限？</li><li>拿一份真实样本给我看，不是脱敏演示版。</li><li>数据多久更新一次？谁负责质量？</li><li>有没有一张纸写明字段口径？</li></ol>
+<p><strong>看技术</strong></p>
+<ol><li>核心系统有没有 API？文档长什么样？</li><li>上一次系统出故障，多久发现的？</li><li>私有化、专有云、公有云，哪条是红线？</li></ol>
+<p><strong>看合规与收尾</strong></p>
+<ol><li>法务和信息安全，从哪天开始参与？</li><li>数据能不能出域？有没有备案要求？</li><li>项目验收时，<strong>谁、按什么标准、签字？</strong></li></ol>
+<blockquote><p>*卡片设计：黑底编号清单，PASTA 五色分组，手机截图比例。*</p></blockquote>
+<hr>
+</section><section class='reveal'><h2>【金句海报】</h2>
+<div class="poster reveal"><p>"不要问客户想要什么，<br>去看他们每天在忍受什么。"</p><div class="sig">FDE 工程师蓝皮书</div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>AI 就绪度六维：改写自原书稿第 3 章 3.2.2（战略/数据/技术/组织/应用/合规）</li><li>PASTA 框架：改写自原书稿第 4 章 4.2.2（Problem/Ability/Scalability/Timing/Action）</li><li>无在位者测试、接/不接逻辑：Bob McGrew 在 Y Combinator 的 FDE Playbook 分享，2025-09</li><li>场 1 权力地图为 FDE 方法论常见实践的归纳，非单一来源</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="ch04.html">← 影子 AI：你公司 90% </a><a class="nextcard" href="ch06.html"><span class="nc-k">下一章</span><b>把“大概能提效”写成契约</b><i>那句杀死项目的话</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script src="assets/vendor/echarts.min.js"></script><script src="assets/fde-theme.js"></script><script src="assets/charts.js"></script><script>window.FDE_READINESS={"title": "AI 就绪度测评", "btn": "生成就绪度雷达", "max": 5, "dims": ["战略", "数据", "技术", "组织", "应用", "合规"], "questions": [{"t": "谈到 AI，你们管理层最接近哪种状态？", "opts": [{"t": "“老板很重视”，但说不清重视什么", "s": [1, 0, 0, 0, 0, 0]}, {"t": "有年度方向，没写进考核", "s": [3, 0, 0, 0, 0, 0]}, {"t": "KPI 里写明落地场景和指标", "s": [5, 0, 0, 0, 0, 0]}]}, {"t": "AI 项目的预算形态是？", "opts": [{"t": "还没影的事", "s": [1, 0, 0, 0, 0, 0]}, {"t": "有创新基金，随报随批", "s": [3, 0, 0, 0, 0, 0]}, {"t": "列入年度预算，有验收节点", "s": [5, 0, 0, 0, 0, 0]}]}, {"t": "核心业务数据的真实状态？", "opts": [{"t": "“都在系统里，导出来就行”", "s": [0, 1, 0, 0, 0, 0]}, {"t": "有治理但欠账不少", "s": [0, 3, 0, 0, 0, 0]}, {"t": "有专人、有口径、有更新机制", "s": [0, 5, 0, 0, 0, 0]}]}, {"t": "知识库/文档的现状？", "opts": [{"t": "最后更新是去年", "s": [0, 1, 0, 0, 0, 0]}, {"t": "有人管但没流程", "s": [0, 3, 0, 0, 0, 0]}, {"t": "版本化管理，定期更新", "s": [0, 5, 0, 0, 0, 0]}]}, {"t": "核心系统的集成能力？", "opts": [{"t": "十年前外包的黑盒", "s": [0, 0, 1, 0, 0, 0]}, {"t": "有 API 但文档感人", "s": [0, 0, 3, 0, 0, 0]}, {"t": "网关、日志、工程团队齐备", "s": [0, 0, 5, 0, 0, 0]}]}, {"t": "上次系统故障，多久被发现？", "opts": [{"t": "用户打电话来骂才知道", "s": [0, 0, 1, 0, 0, 0]}, {"t": "有人盯，但不及时", "s": [0, 0, 3, 0, 0, 0]}, {"t": "监控告警分钟级发现", "s": [0, 0, 5, 0, 0, 0]}]}, {"t": "业务和技术提需求的方式？", "opts": [{"t": "“先走个流程”，流程三个月", "s": [0, 0, 0, 1, 0, 0]}, {"t": "能开会，但很难拍板", "s": [0, 0, 0, 3, 0, 0]}, {"t": "同桌吵架，也能同桌拍板", "s": [0, 0, 0, 5, 0, 0]}]}, {"t": "一线员工对 AI 项目的态度？", "opts": [{"t": "没人告诉过他们", "s": [0, 0, 0, 1, 0, 0]}, {"t": "听说过，观望中", "s": [0, 0, 0, 3, 0, 0]}, {"t": "有种子用户主动参与", "s": [0, 0, 0, 5, 0, 0]}]}, {"t": "让业务说出具体痛点场景？", "opts": [{"t": "“先做个通用智能助手”", "s": [0, 0, 0, 0, 1, 0]}, {"t": "有场景，没排序", "s": [0, 0, 0, 0, 3, 0]}, {"t": "三个具体痛点脱口而出", "s": [0, 0, 0, 0, 5, 0]}]}, {"t": "上一个数字化/AI 项目的结局？", "opts": [{"t": "悄悄没人用了", "s": [0, 0, 0, 0, 1, 0]}, {"t": "活着，但没人复盘", "s": [0, 0, 0, 0, 3, 0]}, {"t": "有指标、有复盘、有迭代", "s": [0, 0, 0, 0, 5, 0]}]}, {"t": "法务和信息安全什么时候参与？", "opts": [{"t": "“先做出来，合规后面再说”", "s": [0, 0, 0, 0, 0, 1]}, {"t": "听说过项目，没进组", "s": [0, 0, 0, 0, 0, 3]}, {"t": "从第一天就在场", "s": [0, 0, 0, 0, 0, 5]}]}, {"t": "数据出域和备案情况？", "opts": [{"t": "没想过这个问题", "s": [0, 0, 0, 0, 0, 1]}, {"t": "知道有限制，没评估", "s": [0, 0, 0, 0, 0, 3]}, {"t": "红线清晰，手续路径明确", "s": [0, 0, 0, 0, 0, 5]}]}], "verdicts": [[2.4, "先补课", "有维度亮红灯。先按第 5 章清单补短板，别急着进场——项目会准时在你最弱的那一关翻车。"], [3.9, "可以进场", "基本盘及格，但有短板维度。带着补齐计划进场，把短板写进项目风险清单。"], [5.1, "绿灯全亮", "就绪度罕见地好。别浪费——直接上 MVP，用第 6 章的验收契约锁定第一场胜利。"]]};</script>
+<script src="assets/app.js"></script>
+</body></html>

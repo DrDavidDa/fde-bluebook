@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>失败复盘：五种死法 ｜ FDE 工程师蓝皮书</title>
+<meta name="description" content="每个坑前面都有一块警示牌 —— FDE 工程师蓝皮书 · 第二幕 · 避坑">
+<link rel="canonical" href="https://drdaviddda.github.io/fde-bluebook/ch03.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FDE 工程师蓝皮书">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="失败复盘：五种死法 ｜ FDE 工程师蓝皮书">
+<meta property="og:description" content="每个坑前面都有一块警示牌 —— FDE 工程师蓝皮书 · 第二幕 · 避坑">
+<meta property="og:url" content="https://drdaviddda.github.io/fde-bluebook/ch03.html">
+<meta property="og:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="失败复盘：五种死法 ｜ FDE 工程师蓝皮书">
+<meta name="twitter:description" content="每个坑前面都有一块警示牌 —— FDE 工程师蓝皮书 · 第二幕 · 避坑">
+<meta name="twitter:image" content="https://drdaviddda.github.io/fde-bluebook/assets/og.png">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head><body data-ch="ch03" data-act="a2">
+<div id="readbar"></div><div id="readticks"></div>
+<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span><div class="map-links"><a href="index.html" data-ch="">序章</a><a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a><a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a><a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a><a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a><a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a><a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a></div></nav>
+<main class="chapter">
+<header class="chhero">
+<div class="bignum-no">03</div>
+<div class="inner">
+<div class="act-tag">第二幕 · 避坑</div>
+<h1>失败复盘：五种死法</h1>
+<div class="teaser">每个坑前面都有一块警示牌</div>
+<div class="scrollhint">滚动开始</div>
+</div>
+</header>
+<div class="wrap">
+<div class="statband"><div class="sb"><div class="n">95%</div><div class="d">无可衡量 P&L 影响的项目占比</div></div><div class="sb"><div class="n">5 种</div><div class="d">全部失败可归入的死法</div></div><div class="sb"><div class="n">1 种</div><div class="d">其中真正和技术有关的</div></div></div>
+<section class='reveal firstsec'><h2>【开场】每个坑前面都有一块警示牌</h2>
+<p>航空安全领域有个共识：绝大多数事故不是意外，是同一批隐患换了不同的航班。</p>
+<p>AI 项目也一样。MIT 分析了 300 多个项目，Stanford 拆解了 51 个幸存者——失败归因归拢，其实就五种。</p>
+<p>这一章是复盘室，也是地图：<strong>每一个坑前面都插着一块警示牌，上面写着上一个失败项目的名字。</strong></p>
+<hr>
+</section><section class='reveal'><h2>【死法 1】技术死：Demo 很惊艳，生产见光死</h2>
+<p><strong>典型经过</strong>：热门模型 + 惊艳 demo，领导拍板。一上生产，模型编造产品型号，还对投诉用户承诺"双倍赔偿"——没人做过评估，因为"看起来挺好的"。</p>
+<p><strong>现场信号</strong>（客户在会议上说出这句话就要警惕）：</p>
+<blockquote><p>"我们还没建评估集，先上线跑跑看，用户会告诉我们的。"</p></blockquote>
+<p><strong>复盘结论</strong>：死因不是幻觉，是<strong>没有 evals 就没有发现幻觉的能力</strong>。能力边界从没被测量，"挺好"全是感觉——等于盲飞。</p>
+<p><strong>出路</strong>：第 7 章。50 条评估集起步，变更必跑分，护栏三道闸；答不上来时说什么、转给谁，写死在设计里。</p>
+<hr>
+</section><section class='reveal'><h2>【死法 2】数据死：给法拉利加了一箱水</h2>
+<p><strong>典型经过</strong>：选型三个月，数据准备三小时。结果知识库停在 2019 年，字段口径三个版本，PDF 解析全是乱码——模型连公司有几个仓库都查不到。</p>
+<p><strong>现场信号</strong>：</p>
+<blockquote><p>"数据质量确实一般，但你们 AI 不是很强吗，应该能搞定吧？"</p></blockquote>
+<p><strong>复盘结论</strong>：AI 搞不定脏数据，只会<strong>放大</strong>它。数据工程通常占工作量 40% 以上，没写进预算等于预算造假。</p>
+<p><strong>出路</strong>：第 7 章场 1。事实源与语料分离、数据合约、审计追踪链；第一周就做数据体检：100 条真实样本人工过一遍。</p>
+<hr>
+</section><section class='reveal'><h2>【死法 3】钱死：ROI 永远"下个季度就能算出来"</h2>
+<p><strong>典型经过</strong>：汇报永远"进展显著"，CFO 问收益永远"长期价值很大"。十八个月后预算审查，全票砍掉——它从没被允许证明自己的价值。</p>
+<p><strong>现场信号</strong>：</p>
+<blockquote><p>"AI 是战略投入，不能只用短期 ROI 衡量。"</p></blockquote>
+<p>（说这话的项目 90% 死了——"战略"被当成了不算账的许可证。）</p>
+<p><strong>复盘结论</strong>：战略投入也要算账，只是算法不同：可以不算直接收益，必须算<strong>过程指标</strong>——使用率、准确率、替代工时。</p>
+<p><strong>出路</strong>：第 6 章。立项即签验收契约：指标、数据集、验收人、未达标处理，一页纸写死。</p>
+<hr>
+</section><section class='reveal'><h2>【死法 4】人死：系统上线那天，遭遇了一场静默罢工</h2>
+<p><strong>典型经过</strong>：技术顺利，上线第一天使用率诡异走低：坐席教用户绕过系统，主管在群里说"先别全信"。没人破坏，大家只是<strong>不配合</strong>。</p>
+<p><strong>现场信号</strong>：</p>
+<blockquote><p>"员工培训？上线后发个操作手册就行。"</p></blockquote>
+<p><strong>复盘结论</strong>：员工抵制的从来不是技术，是没人回答的那个问题：<strong>"我会怎么样？"</strong> MIT 报告把"组织与学习鸿沟"列为首要失败归因，权重远超技术因素。</p>
+<p><strong>出路</strong>：第 8 章场 4。先讲岗位未来再讲系统、一线参与建设、考核跟着改；变革管理预算与工程预算同时立项。</p>
+<hr>
+</section><section class='reveal'><h2>【死法 5】合规死：法务叫停的那封邮件</h2>
+<p><strong>典型经过</strong>：顺风顺水八个月，法务第一次参会，问了三个问题：训练数据哪来的？数据出境吗？算法备案了吗？项目冻结五个月，业务窗口期已过。</p>
+<p><strong>现场信号</strong>：</p>
+<blockquote><p>"先做出来再说，合规到时候补。"</p></blockquote>
+<p><strong>复盘结论</strong>：中国有算法备案与安全评估要求，欧盟 AI Act 已生效，数据出境有专门评估通道。<strong>合规不是项目末尾的手续，是项目开头的架构决策。</strong></p>
+<p><strong>出路</strong>：第一周就约法务和信息安全——他们告诉你哪条路能走通。把合规检查点写进里程碑，别写进事故报告。</p>
+<hr>
+</section><section class='reveal'><h2>【场 6】复盘总结</h2>
+<p>五种死法放在一起，浮现出一个反直觉的规律：</p>
+<p><strong>只有一种死法（技术死）和技术有关。</strong> 其余四种——数据、钱、人、合规——全是管理与工程纪律问题。</p>
+<p>这正是 MIT"学习鸿沟"的本来面目：失败不是因为模型不够聪明，而是组织没把"用起来"当成专业工程。<strong>而这恰恰是 FDE 这个岗位存在的全部理由。</strong></p>
+<hr>
+<div class="scrolly" data-scene="tombs"><div class="stage"><div class="component"><div class="cap">失败地图 · 五种典型死法（滚动翻页）</div><div class="stackcards"><div class="stcard" style="--i:0"><div class="ic">⚙</div><div class="nm">技术死</div></div><div class="stcard" style="--i:1"><div class="ic">🗄</div><div class="nm">数据死</div></div><div class="stcard" style="--i:2"><div class="ic">💸</div><div class="nm">钱死</div></div><div class="stcard" style="--i:3"><div class="ic">🧍</div><div class="nm">人死</div></div><div class="stcard" style="--i:4"><div class="ic">⚖</div><div class="nm">合规死</div></div></div></div></div><div class="steps"><div class="sstep"><div class="card"><b>第 1 种 · 技术死</b><br>Demo 惊艳，生产见光死：没有 evals 就没有发现问题的能力</div></div><div class="sstep"><div class="card"><b>第 2 种 · 数据死</b><br>给法拉利加了一箱水：脏数据被 AI 高效放大</div></div><div class="sstep"><div class="card"><b>第 3 种 · 钱死</b><br>ROI 永远“下个季度能算出来”，直到预算被砍</div></div><div class="sstep"><div class="card"><b>第 4 种 · 人死</b><br>一场静默罢工：没人破坏系统，只是不配合</div></div><div class="sstep"><div class="card"><b>第 5 种 · 合规死</b><br>法务的那封邮件，冻结了八个月的项目</div></div></div></div>
+</section><section class='reveal'><h2>【速查卡】进场第一周障碍扫描清单</h2><button class="collect" data-card="ch03">☆ 收进卡册</button>
+<pre><code>技术    □ 有没有评估集？哪怕 50 条
+        □ 上一次答错的案例，能调出记录吗
+数据    □ 知识库最后更新时间是什么时候
+        □ 关键字段口径，有几个版本
+        □ 能拿到 100 条真实样本吗
+钱      □ 立项文档里有没有可测量指标
+        □ 谁在什么时间点、按什么标准验收
+人      □ 一线员工知道这个项目吗，怎么说的
+        □ 上一个系统是怎么被弃用的
+合规    □ 法务/信安参与了吗，从哪天开始
+        □ 数据能否出域，需不需要备案
+        □ 高危场景有没有人工兜底要求</code></pre>
+<hr>
+</section><section class='reveal'><h2>【金句海报】</h2>
+<div class="poster reveal"><p>"AI 项目很少死于技术，<br>它们死于那些'到时候再说'。"</p><div class="sig">FDE 工程师蓝皮书</div></div>
+<hr>
+</section><section class='reveal'><h2>本章来源</h2>
+<ul><li>失败归因框架：MIT NANDA《GenAI Divide》（2025-08）"learning gap"论述；原书稿第 2 章 2.2 五类挑战改写</li><li>Stanford《Enterprise AI Playbook》（2026-03）51 案例的失败访谈方法</li><li>合规要点：中国《生成式人工智能服务管理暂行办法》、欧盟 AI Act（2024 生效，分阶段适用）</li><li>"40% 数据工程工作量"为行业经验值，标注为经验法则</li><li>各"典型经过"为综合公开报道与常见模式的虚构合成案例，不指向具体公司</li></ul></section>
+<div class="nextch"><a class="btn ghost" href="ch02.html">← OpenAI 为什么一年把这</a><a class="nextcard" href="ch04.html"><span class="nc-k">下一章</span><b>影子 AI：你公司 90% 的员工已经在用了</b><i>IT 部不知道的那场革命</i><span class="nc-go">继续 →</span></a></div>
+</div>
+</main>
+<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<script></script>
+<script src="assets/app.js"></script>
+</body></html>
