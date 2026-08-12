@@ -545,9 +545,14 @@ def build_nav(cur):
             + now +
             '<div class="nav-actions">'
             '<button class="nav-toc" type="button" aria-expanded="false"><i>☰</i>目录</button>'
+            '<a class="nav-link%s" href="hub.html">枢纽</a>'
             '<a class="nav-link%s" href="toolbox.html">工具箱</a>'
             '<a class="nav-link%s" href="finish.html">卡册</a>'
-            '</div></nav>') % (" cur" if cur == "toolbox" else "", " cur" if cur == "finish" else "")
+            '</div></nav>') % (
+                " cur" if cur == "hub" else "",
+                " cur" if cur == "toolbox" else "",
+                " cur" if cur == "finish" else "",
+            )
 
 TEMPLATE = """<!DOCTYPE html>
 <html lang="zh-CN"><head>
@@ -588,7 +593,7 @@ TEMPLATE = """<!DOCTYPE html>
 <div class="nextch">{prevnext}</div>
 </div>
 </main>
-<footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
+<footer class="footer">AI大同学 · DR.David · FDE 工程师蓝皮书</footer>
 {vendorjs}<script>{quizjs}</script>
 <script src="assets/app.js"></script>
 </body></html>"""
@@ -685,7 +690,7 @@ def build():
     return metas
 
 def write_sitemap():
-    pages = ["index.html"] + [c[0] + ".html" for c in CHAPTERS] + ["finish.html"]
+    pages = ["index.html"] + [c[0] + ".html" for c in CHAPTERS] + ["finish.html", "hub.html", "leaders.html", "start.html"]
     urls = "\n".join(
         '  <url><loc>%s%s</loc></url>' % (BASE_URL, "" if p == "index.html" else p)
         for p in pages)

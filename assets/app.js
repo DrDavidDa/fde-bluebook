@@ -346,7 +346,10 @@ RS.load();
     });
     cols+='</div>';
   });
-  cols+='<div class="tp-act a0"><div class="tp-actname">独立单元</div>'
+  cols+='<div class="tp-act a0"><div class="tp-actname">入口</div>'
+    +'<a href="hub.html"'+(cur==='hub'?' class="cur"':'')+'><span class="no">✦</span><span>枢纽 · 先判断 / 看方法 / 开始改</span></a>'
+    +'<a href="leaders.html"'+(cur==='leaders'?' class="cur"':'')+'><span class="no">✦</span><span>给负责人的读法</span></a>'
+    +'<a href="start.html"'+(cur==='start'?' class="cur"':'')+'><span class="no">✦</span><span>开始改 · 诊断与咨询</span></a>'
     +'<a href="index.html"'+(cur===''?' class="cur"':'')+'><span class="no">✦</span><span>序章 · 95% 的项目都死了</span></a>'
     +'<a href="toolbox.html"'+(cur==='toolbox'?' class="cur"':'')+'><span class="no">✦</span><span>工具箱 · 八件装备</span></a>'
     +'<a href="finish.html"'+(cur==='finish'?' class="cur"':'')+'><span class="no">✦</span><span>卡册与战绩</span></a></div>';
@@ -403,3 +406,41 @@ document.querySelectorAll('.dt-opts').forEach(box=>{
     });
   });
 });
+
+/* ================= 转化入口（隧道失效时，页面仍保留公众号兜底） ================= */
+window.FDE_INTAKE = {
+  diagnosis: "https://powerseller-exemption-madonna-participation.trycloudflare.com/diagnosis.html?v=20260404r1",
+  exchange: "https://powerseller-exemption-madonna-participation.trycloudflare.com/exchange.html?v=20260404r1",
+  consult: "https://powerseller-exemption-madonna-participation.trycloudflare.com/consult.html?v=20260404r1",
+  wechat: "AI大同学"
+};
+
+(function injectHubNav(){
+  const actions=document.querySelector('.nav-actions');
+  if(!actions || actions.querySelector('[data-nav="hub"], a.nav-link[href="hub.html"]')) return;
+  const a=document.createElement('a');
+  a.className='nav-link'+(document.body.dataset.ch==='hub'?' cur':'');
+  a.href='hub.html';
+  a.dataset.nav='hub';
+  a.textContent='枢纽';
+  const toc=actions.querySelector('.nav-toc');
+  if(toc && toc.nextSibling) actions.insertBefore(a, toc.nextSibling);
+  else if(toc) toc.after(a);
+  else actions.prepend(a);
+})();
+
+(function injectSiteFooter(){
+  const foot=document.querySelector('footer.footer');
+  if(!foot) return;
+  const ch=document.body.dataset.ch||'';
+  foot.innerHTML =
+    '<div class="sitefoot">'
+    +'<div class="forkbar">'
+    +'<a class="boss" href="leaders.html"><div class="k">PATH A</div><div class="t">我是负责人，公司要这能力</div><div class="d">读失败复盘、进场 72 小时和工具箱，再决定要不要诊断。</div></a>'
+    +'<a class="talent" href="ch01.html"><div class="k">PATH B</div><div class="t">我想做 FDE</div><div class="d">从 Palantir 那一章读到面试。卡册和测评都在书里。</div></a>'
+    +'</div>'
+    +'<div class="credit">AI大同学 · DR.David<br>'
+    +'<a href="hub.html">枢纽</a> · <a href="start.html">开始改</a> · <a href="toolbox.html">工具箱</a>'
+    +(ch==='toolbox'?'':' · 数据来源见工具箱 · 装备 8')
+    +'</div></div>';
+})();

@@ -548,3 +548,52 @@ pre code{font-size:15px}
 body[data-ch="toolbox"] .chapter .wrap > section.firstsec > p:first-of-type::first-letter{
   float:none;font-size:inherit;font-family:inherit;font-weight:inherit;
   color:inherit;padding:0;line-height:inherit}
+
+/* ===== 枢纽 / 双路径 / 开始改 ===== */
+.forkbar{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:720px;margin:28px auto 0;text-align:left}
+.forkbar a{display:block;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 22px 20px;
+  box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+.forkbar a:hover{transform:translateY(-4px);text-decoration:none;border-color:var(--gold)}
+.forkbar .k{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:8px}
+.forkbar .t{font-family:var(--serif);font-weight:800;font-size:20px;color:var(--ink);line-height:1.35}
+.forkbar .d{font-size:13.5px;color:var(--dim);margin-top:8px;line-height:1.7}
+.forkbar .boss{border-top:3px solid var(--gold)}
+.forkbar .talent{border-top:3px solid var(--accent)}
+@media (max-width:640px){.forkbar{grid-template-columns:1fr}}
+
+.sitefoot{max-width:880px;margin:0 auto;padding:0 22px;text-align:left}
+.sitefoot .forkbar{margin:0 0 22px}
+.sitefoot .credit{text-align:center;color:var(--faint);font-size:13px;line-height:1.8}
+.sitefoot .credit a{color:var(--dim)}
+footer.footer{padding:40px 0 56px}
+
+.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:36px 0 8px}
+.door{display:block;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 22px;
+  box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+.door:hover{transform:translateY(-5px);text-decoration:none;border-color:var(--accent)}
+.door .no{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--faint)}
+.door h2{font-size:22px;margin:10px 0 8px;padding:0;border:none}
+.door p{font-size:14px;color:var(--dim);margin:0;line-height:1.75}
+.door.gold{border-top:3px solid var(--gold)}
+.door.blue{border-top:3px solid var(--accent)}
+.door.ink{border-top:3px solid var(--ink)}
+@media (max-width:800px){.doors{grid-template-columns:1fr}}
+
+.pathlist{display:flex;flex-direction:column;gap:0;margin:28px 0}
+.pathstep{display:grid;grid-template-columns:72px 1fr auto;gap:16px;align-items:center;
+  padding:18px 0;border-bottom:1px solid var(--line)}
+.pathstep .no{font-family:var(--mono);font-size:22px;font-weight:800;color:var(--gold)}
+.pathstep b{display:block;font-family:var(--serif);font-size:18px;color:var(--ink)}
+.pathstep span{display:block;font-size:13.5px;color:var(--dim);margin-top:4px;line-height:1.65}
+@media (max-width:640px){
+  .pathstep{grid-template-columns:48px 1fr; }
+  .pathstep .go{grid-column:2}
+}
+
+.startgrid{display:grid;grid-template-columns:1fr;gap:16px;margin:28px 0}
+.startcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;
+  box-shadow:var(--shadow)}
+.startcard h2{margin:0 0 8px;padding:0;border:none;font-size:22px}
+.startcard p{margin:0 0 16px}
+.wechat-fallback{background:#fdf6e9;border:1px solid #f1e0c2;border-radius:14px;padding:20px 22px;margin:28px 0}
+.wechat-fallback b{color:var(--gold)}
