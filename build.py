@@ -520,7 +520,7 @@ QUIZ_SCRIPTS = {
 }
 
 # 站点发布地址（GitHub Pages），canonical/og:url/sitemap 都用它
-BASE_URL = "https://drdaviddda.github.io/fde-bluebook/"
+BASE_URL = "https://drdavidda.github.io/fde-bluebook/"
 
 # 顶导航短标签（三处同步：本表、index.html、finish.html）
 NAV_LABELS = {
