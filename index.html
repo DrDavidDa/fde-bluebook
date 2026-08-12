@@ -19,110 +19,170 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="assets/style.css">
 <style>
-.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 20px}
-.mega{font-family:var(--mono);font-weight:800;line-height:1;color:var(--ink)}
-.fade-cap{color:var(--dim);font-size:17px;margin-top:26px;max-width:560px;line-height:1.9}
-.graves{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;width:100%;max-width:1000px;margin:0 auto}
-.grave{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:26px 20px;text-align:center;transition:transform .25s,border-color .25s}
-.grave:hover{transform:translateY(-5px);border-color:var(--red)}
-.grave .no{font-family:var(--mono);color:var(--faint);font-size:12px}
-.grave .nm{font-weight:800;font-size:18px;color:var(--red);margin:8px 0}
-.grave .ds{font-size:13.5px;color:var(--dim);line-height:1.7}
-.fde-letters{font-family:var(--mono);font-size:min(26vw,190px);font-weight:800;letter-spacing:.08em;
-  background:linear-gradient(120deg,#1f6feb,#7c3aed,#b45309);-webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 40px rgba(31,111,235,.3))}
-.stat3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;width:100%;max-width:960px;margin:0 auto}
-.stat3 .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px 22px;text-align:center}
-.stat3 .n{font-family:var(--mono);font-size:40px;font-weight:800;color:var(--gold)}
-.stat3 .d{font-size:13.5px;color:var(--dim);margin-top:12px;line-height:1.7}
-.enter{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:44px}
-.route{color:var(--faint);font-size:13px;margin-top:18px;font-family:var(--mono)}
-.src-note{color:var(--faint);font-size:12px;max-width:640px;margin:26px auto 0;line-height:1.7;text-align:center}
-body.noanim .hero{min-height:520px;padding:48px 20px}
+/* ===== 序章 v5 · 四幕结构 ===== */
+.iblock{padding:104px 24px;position:relative}
+.iblock .in{max-width:980px;margin:0 auto;text-align:center}
+.iblock.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+/* ---- 幕 1：开场双数字 ---- */
+.ihero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;
+  padding:120px 24px 90px;overflow:hidden;
+  background:
+    radial-gradient(760px 420px at 50% -8%,rgba(31,111,235,.10),transparent 70%),
+    radial-gradient(640px 420px at 82% 96%,rgba(229,72,77,.07),transparent 70%),
+    linear-gradient(#f6f7f9,#f6f7f9)}
+.ihero::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(70% 62% at 50% 42%,#000 30%,transparent 100%);
+  mask-image:radial-gradient(70% 62% at 50% 42%,#000 30%,transparent 100%)}
+.ihero .in{position:relative;max-width:860px;margin:0 auto;text-align:center}
+.mega{font-family:var(--mono);font-weight:800;line-height:1.05;color:var(--ink);letter-spacing:-.01em}
+.mega.money{font-size:clamp(34px,6.4vw,72px)}
+.mega.bignum{font-size:clamp(96px,17vw,200px);color:var(--red);line-height:1;
+  text-shadow:0 22px 60px rgba(229,72,77,.22)}
+.fade-cap{color:var(--dim);font-size:17px;margin:22px auto 0;max-width:600px;line-height:1.95}
+.connector{display:flex;flex-direction:column;align-items:center;gap:10px;margin:52px 0 44px}
+.connector .line{width:1px;height:56px;background:linear-gradient(var(--faint),transparent)}
+.connector .q{font-family:var(--serif);font-size:19px;color:var(--ink2);letter-spacing:.1em}
+.src-note{color:var(--faint);font-size:12.5px;max-width:640px;margin:30px auto 0;line-height:1.8}
+.ihero .scrollhint{margin-top:46px;font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:3px}
+.ihero .scrollhint::after{content:'↓';display:block;font-size:18px;color:var(--accent);margin-top:6px;
+  animation:hintbob 1.8s ease-in-out infinite}
+
+/* ---- 区块标题 ---- */
+.ib-kicker{font-family:var(--mono);font-size:13px;letter-spacing:4px;color:var(--red);display:block;margin-bottom:16px}
+.ib-title{font-family:var(--serif);font-size:clamp(30px,4.4vw,44px);font-weight:800;color:var(--ink);
+  margin:0 0 14px;line-height:1.3}
+.ib-sub{color:var(--dim);font-size:16.5px;line-height:1.9;max-width:640px;margin:0 auto 46px}
+
+/* ---- 幕 2：失败陈列馆 ---- */
+.graves{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;width:100%;
+  max-width:1020px;margin:0 auto;text-align:left}
+.grave{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
+  padding:26px 24px;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden}
+.grave::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--red),transparent 70%);opacity:0;transition:opacity .25s}
+.grave:hover{transform:translateY(-6px);border-color:var(--red);box-shadow:0 16px 38px rgba(229,72,77,.13)}
+.grave:hover::before{opacity:1}
+.grave .no{font-family:var(--mono);color:var(--faint);font-size:12px;letter-spacing:2px}
+.grave .nm{font-family:var(--serif);font-weight:800;font-size:20px;color:var(--red);margin:10px 0 8px}
+.grave .ds{font-size:14px;color:var(--dim);line-height:1.8}
+.ib-cta{margin-top:44px}
+
+/* ---- 幕 3：反转与新物种 ---- */
+.turn{font-family:var(--serif);font-size:clamp(32px,5vw,52px);font-weight:800;color:var(--green);
+  margin:0 0 18px;line-height:1.35}
+.fde-letters{font-family:var(--mono);font-size:clamp(96px,20vw,170px);font-weight:800;letter-spacing:.06em;
+  line-height:1;margin:58px 0 10px;
+  background:linear-gradient(118deg,#1f6feb 12%,#7c3aed 55%,#b45309 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 18px 44px rgba(31,111,235,.26))}
+.fde-def{color:var(--ink2);font-size:18px;line-height:2;max-width:640px;margin:0 auto}
+.fde-def .en{font-family:var(--mono);font-size:13px;color:var(--faint);letter-spacing:2px;display:block;margin-bottom:10px}
+.stat3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;width:100%;
+  max-width:960px;margin:64px auto 0}
+.stat3 .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 24px;
+  text-align:center;box-shadow:var(--shadow);border-top:3px solid var(--gold);
+  transition:transform .25s,box-shadow .25s}
+.stat3 .card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(16,24,40,.1)}
+.stat3 .n{font-family:var(--mono);font-size:42px;font-weight:800;color:var(--gold);line-height:1.15}
+.stat3 .d{font-size:13.5px;color:var(--dim);margin-top:14px;line-height:1.8}
+
+/* ---- 幕 4：入口 ---- */
+.icta{background:
+  radial-gradient(720px 380px at 50% 0%,rgba(180,83,9,.09),transparent 70%),#fff}
+.icta h2{font-family:var(--serif);font-size:clamp(24px,3.6vw,34px);font-weight:800;color:var(--ink);
+  line-height:1.7;max-width:760px;margin:0 auto 44px}
+.icta h2 .gold{color:var(--gold)}
+.btn.big{font-size:17.5px;padding:17px 44px;box-shadow:0 12px 32px rgba(180,83,9,.3)}
+.btn.big:hover{transform:scale(1.05) translateY(-1px)}
+.enter{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.route{color:var(--faint);font-size:13px;margin-top:34px;font-family:var(--mono);letter-spacing:.06em}
+
+body.noanim .ihero{min-height:520px;padding:100px 24px 60px}
 @media (max-width:640px){
-  .mega.bignum{font-size:min(19vw,220px)!important}
-  .fde-letters{font-size:min(30vw,190px)}
+  .iblock{padding:74px 18px}
+  .fade-cap{font-size:15.5px}
+  .stat3 .n{font-size:36px}
+  .btn.big{width:100%;max-width:360px}
+  .enter .btn{flex:1 1 44%}
 }
 </style>
 </head><body data-ch="">
-<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span>
-<div class="map-links">
-<a href="index.html" class="cur" data-ch="">序章</a>
-<a href="ch01.html" data-ch="ch01">Palantir</a><a href="ch02.html" data-ch="ch02">OpenAI ×26</a>
-<a href="ch03.html" data-ch="ch03">失败复盘</a><a href="ch04.html" data-ch="ch04">影子 AI</a>
-<a href="ch05.html" data-ch="ch05">进场 72h</a><a href="ch06.html" data-ch="ch06">验收契约</a><a href="ch07.html" data-ch="ch07">evals</a><a href="ch08.html" data-ch="ch08">最后 100 米</a><a href="ch09.html" data-ch="ch09">砾石路</a>
-<a href="ch10.html" data-ch="ch10">复盘①</a><a href="ch11.html" data-ch="ch11">复盘②</a>
-<a href="ch12.html" data-ch="ch12">$210K</a><a href="ch13.html" data-ch="ch13">拿下 offer</a>
-<a href="toolbox.html" data-ch="toolbox">工具箱</a><a href="finish.html" data-ch="finish">卡册</a>
+<nav class="topnav">
+<a class="brand" href="index.html">FDE<span> · 工程师蓝皮书</span></a>
+<div class="nav-actions">
+<button class="nav-toc" type="button" aria-expanded="false"><i>☰</i>目录</button>
+<a class="nav-link" href="toolbox.html">工具箱</a>
+<a class="nav-link" href="finish.html">卡册</a>
 </div></nav>
 
-<!-- 屏 1：$40B -->
-<section class="hero">
-  <div class="kicker reveal">序章 · 落地页</div>
-  <div class="mega reveal" style="font-size:min(9vw,86px)" data-icount="40b">$0</div>
-  <p class="fade-cap reveal">这是 2025 年，全球企业在生成式 AI 上花掉的钱。<br>约合每天烧掉 1.1 亿美元。</p>
-</section>
-
-<!-- 屏 2：95% -->
-<section class="hero">
-  <div class="mega bignum reveal" style="font-size:min(24vw,220px);color:var(--red)" data-icount="95">0%</div>
-  <p class="fade-cap reveal">其中 95% 的项目，没有产生一分钱可衡量的利润。<br>
-  不是“效果不好”，是<strong>在损益表上查不到它们存在过的痕迹</strong>。</p>
-  <p class="src-note reveal">MIT Project NANDA《GenAI Divide: State of AI in Business》2025-08，基于 300+ 企业项目、150 次高管访谈。
-  统计口径为“无可衡量 P&L 影响”，完整口径与争议见工具箱·装备 8。</p>
-</section>
-
-<!-- 屏 3：尸体陈列馆 -->
-<section class="hero">
-  <h1 class="reveal" style="text-align:center">失 败 陈 列 馆</h1>
-  <p class="fade-cap reveal" style="text-align:center">六种典型死法。每一种背后，都是上亿美元的学费。</p>
-  <div class="graves" style="margin-top:36px">
-    <div class="grave reveal"><div class="no">01</div><div class="nm">幻觉失控</div><div class="ds">Demo 里对答如流，上线第三天给客户报了一个不存在的价格。</div></div>
-    <div class="grave reveal"><div class="no">02</div><div class="nm">数据孤岛</div><div class="ds">模型很强大，但它连公司有几个仓库都查不到。</div></div>
-    <div class="grave reveal"><div class="no">03</div><div class="nm">PoC 烂尾</div><div class="ds">试点“很成功”，然后就没有然后了。预算停在了第二年。</div></div>
-    <div class="grave reveal"><div class="no">04</div><div class="nm">员工抵制</div><div class="ds">系统上线当天被打进冷宫——没人告诉坐席，这东西会不会抢走他们的工作。</div></div>
-    <div class="grave reveal"><div class="no">05</div><div class="nm">ROI 算不清</div><div class="ds">PPT 上写着“提效显著”，CFO 问“多少钱”，会议室安静了。</div></div>
-    <div class="grave reveal"><div class="no">06</div><div class="nm">合规翻车</div><div class="ds">数据出境的那一刻，法务叫停了一切。</div></div>
+<!-- 幕 1：开场双数字 -->
+<header class="ihero">
+  <div class="in">
+    <div class="kicker reveal">FDE 工程师蓝皮书 · 序章</div>
+    <div class="mega money reveal" data-icount="40b">$0</div>
+    <p class="fade-cap reveal">这是 2025 年，全球企业在生成式 AI 上花掉的钱。<br>约合每天烧掉 1.1 亿美元。</p>
+    <div class="connector reveal"><div class="line"></div><div class="q">这些钱，后来怎么样了？</div></div>
+    <div class="mega bignum reveal" data-icount="95">0%</div>
+    <p class="fade-cap reveal">的项目没有产生一分钱可衡量的利润。<br>
+    不是“效果不好”，是<strong>在损益表上查不到它们存在过的痕迹</strong>。</p>
+    <p class="src-note reveal">MIT Project NANDA《GenAI Divide: State of AI in Business》2025-08，基于 300+ 企业项目、150 次高管访谈。
+    统计口径为“无可衡量 P&L 影响”，完整口径与争议见工具箱·装备 8。</p>
+    <div class="scrollhint">往下看</div>
   </div>
-  <div class="enter reveal"><a class="btn ghost" href="ch03.html">查看完整失败复盘 →</a></div>
-</section>
+</header>
 
-<!-- 屏 4：反转 5% -->
-<section class="hero">
-  <div class="mega reveal" style="font-size:min(11vw,96px);color:var(--green)">但有 5% 活了下来。</div>
-  <p class="fade-cap reveal">Stanford 数字经济实验室解剖了 51 个幸存者（2026-03）。<br>
-  它们行业不同、规模不同、用的模型不同。<br>但研究者发现，它们背后站着<strong>同一种人</strong>。</p>
-</section>
-
-<!-- 屏 5：FDE -->
-<section class="hero">
-  <div class="fde-letters reveal">FDE</div>
-  <p class="fade-cap reveal" style="font-size:19px">Forward Deployed Engineer，前沿部署工程师。<br>
-  不写 PPT，不做演示。他们驻扎在客户的业务现场，<br>负责让 AI 在真实世界里<strong>真正跑起来</strong>。</p>
-</section>
-
-<!-- 屏 6：三个数字 -->
-<section class="hero">
-  <div class="stat3">
-    <div class="card reveal"><div class="n" data-icount="800">0</div><div class="d">% · 2025 年 1–9 月 FDE 岗位发布量涨幅。a16z 称它为“科技行业最热门的岗位”。</div></div>
-    <div class="card reveal"><div class="n">2→52</div><div class="d">OpenAI FDE 团队 2025 年初与年底的人数。内部增速最快的团队，不是研究院。</div></div>
-    <div class="card reveal"><div class="n">$210K</div><div class="d">美国 FDE 中位基本薪资。头部公司总包可达 $600K+。</div></div>
+<!-- 幕 2：失败陈列馆 -->
+<section class="iblock alt">
+  <div class="in">
+    <span class="ib-kicker reveal">SIX WAYS TO DIE</span>
+    <h2 class="ib-title reveal">失败陈列馆</h2>
+    <p class="ib-sub reveal">六种典型死法。每一种背后，都是上亿美元的学费。</p>
+    <div class="graves">
+      <div class="grave reveal"><div class="no">01</div><div class="nm">幻觉失控</div><div class="ds">Demo 里对答如流，上线第三天给客户报了一个不存在的价格。</div></div>
+      <div class="grave reveal"><div class="no">02</div><div class="nm">数据孤岛</div><div class="ds">模型很强大，但它连公司有几个仓库都查不到。</div></div>
+      <div class="grave reveal"><div class="no">03</div><div class="nm">PoC 烂尾</div><div class="ds">试点“很成功”，然后就没有然后了。预算停在了第二年。</div></div>
+      <div class="grave reveal"><div class="no">04</div><div class="nm">员工抵制</div><div class="ds">系统上线当天被打进冷宫——没人告诉坐席，这东西会不会抢走他们的工作。</div></div>
+      <div class="grave reveal"><div class="no">05</div><div class="nm">ROI 算不清</div><div class="ds">PPT 上写着“提效显著”，CFO 问“多少钱”，会议室安静了。</div></div>
+      <div class="grave reveal"><div class="no">06</div><div class="nm">合规翻车</div><div class="ds">数据出境的那一刻，法务叫停了一切。</div></div>
+    </div>
+    <div class="ib-cta reveal"><a class="btn ghost" href="ch03.html">查看完整失败复盘 →</a></div>
   </div>
 </section>
 
-<!-- 屏 7：入口 -->
-<section class="hero">
-  <h1 class="reveal" style="text-align:center;font-size:30px;max-width:700px">这本蓝皮书不写 AI 能做什么。<br>只写一件事：<span style="color:var(--gold)">怎么让 AI 项目活下来</span>——<br>以及，怎么成为那个让它活下来的人。</h1>
-  <div class="enter reveal">
-    <a class="btn gold" href="ch01.html">进入第一关：Palantir 藏了 15 年的岗位 →</a>
+<!-- 幕 3：反转与新物种 -->
+<section class="iblock">
+  <div class="in">
+    <h2 class="turn reveal">但有 5% 活了下来。</h2>
+    <p class="ib-sub reveal" style="margin-bottom:0">Stanford 数字经济实验室解剖了 51 个幸存者（2026-03）。<br>
+    它们行业不同、规模不同、用的模型不同——但背后站着<strong>同一种人</strong>。</p>
+    <div class="fde-letters reveal">FDE</div>
+    <p class="fde-def reveal"><span class="en">FORWARD DEPLOYED ENGINEER</span>
+    前沿部署工程师。不写 PPT，不做演示。<br>驻扎在客户的业务现场，让 AI 在真实世界里<strong>真正跑起来</strong>。</p>
+    <div class="stat3">
+      <div class="card reveal"><div class="n" data-icount="800">0</div><div class="d">% · 2025 年 1–9 月 FDE 岗位发布量涨幅。a16z 称它为“科技行业最热门的岗位”。</div></div>
+      <div class="card reveal"><div class="n">2→52</div><div class="d">OpenAI FDE 团队 2025 年初与年底的人数。内部增速最快的团队，不是研究院。</div></div>
+      <div class="card reveal"><div class="n">$210K</div><div class="d">美国 FDE 中位基本薪资。头部公司总包可达 $600K+。</div></div>
+    </div>
   </div>
-  <div class="enter reveal">
-    <a class="btn ghost" href="ch05.html">想先测测公司？AI 就绪度测评</a>
-    <a class="btn ghost" href="ch12.html">想先测测自己？FDE 天赋指数</a>
-    <a class="btn ghost" href="toolbox.html">只要工具：八件装备</a>
+</section>
+
+<!-- 幕 4：入口 -->
+<section class="iblock alt icta">
+  <div class="in">
+    <h2 class="reveal">这本蓝皮书不写 AI 能做什么。只写一件事：<br>
+    <span class="gold">怎么让 AI 项目活下来</span>——以及，怎么成为那个让它活下来的人。</h2>
+    <div class="reveal"><a class="btn gold big" href="ch01.html">进入第一关：Palantir 藏了 15 年的岗位 →</a></div>
+    <div class="enter reveal">
+      <a class="btn ghost" href="ch05.html">测公司：AI 就绪度</a>
+      <a class="btn ghost" href="ch12.html">测自己：FDE 天赋</a>
+      <a class="btn ghost" href="toolbox.html">只要工具：八件装备</a>
+    </div>
+    <p class="route reveal">作战路线：新物种（1–2）→ 避坑（3–4）→ 作战链（5–9）→ 前线与身价（10–13）</p>
+    <div id="resume" class="resume" style="display:none"></div>
   </div>
-  <p class="route reveal">作战路线：新物种（1–2）→ 避坑（3–4）→ 作战链（5–9）→ 前线与身价（10–13）</p>
-  <div id="resume" class="resume" style="display:none"></div>
 </section>
 
 <footer class="footer">FDE 工程师蓝皮书 · 数据来源见「工具箱 · 装备 8」 · 站点为内容原型</footer>
@@ -151,6 +211,7 @@ if(/noanim/.test(location.search)) document.body.classList.add('noanim');
     });
   }, {threshold:.4});
   els.forEach(el=>obs.observe(el));
+  if(noanim) els.forEach(el=>{ const s=FMT[el.dataset.icount]; el.textContent=s.f(s.t); });
 })();
 /* 回访读者：阅读进度与继续入口 */
 (function(){

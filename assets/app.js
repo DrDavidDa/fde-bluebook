@@ -222,14 +222,26 @@ document.querySelectorAll('[data-calc=roi]').forEach(box=>{
   calc();
 });
 
-/* ---- 当前章节导航高亮 ---- */
-(function(){
-  const id = document.body.dataset.ch;
-  if(!id) return;
-  document.querySelectorAll('.map-links a').forEach(a=>{
-    if(a.dataset.ch===id) a.classList.add('cur');
-  });
-})();
+/* ---- 全书目录数据（作战地图面板；改章名需同步 build.py CHAPTERS） ---- */
+const FDE_TOC = [
+  {act:'第一幕 · 新物种', cls:'a1', chs:[
+    ['ch01','Palantir 藏了 15 年的岗位'],
+    ['ch02','OpenAI 为什么一年扩了 26 倍']]},
+  {act:'第二幕 · 避坑', cls:'a2', chs:[
+    ['ch03','失败复盘：五种死法'],
+    ['ch04','影子 AI：90% 员工已在用']]},
+  {act:'第三幕 · 作战链', cls:'a3', chs:[
+    ['ch05','进场 72 小时'],
+    ['ch06','把「大概能提效」写成契约'],
+    ['ch07','RAG 不是银弹，evals 才是命门'],
+    ['ch08','最后 100 米：从 Demo 到生产'],
+    ['ch09','砾石路原理']]},
+  {act:'第四幕 · 前线与身价', cls:'a4', chs:[
+    ['ch10','前线复盘①：保险项目'],
+    ['ch11','前线复盘②：2026 新前线'],
+    ['ch12','年薪 $210K 的新物种'],
+    ['ch13','拿下 offer：面试隐藏考纲']]},
+];
 
 /* ---- 阅读进度条 ---- */
 (function(){
@@ -318,12 +330,45 @@ RS.load();
   upd();
 })();
 
-/* 顶导航完成勾 */
+/* ================= 作战地图面板（目录） ================= */
 (function(){
-  document.querySelectorAll('.map-links a').forEach(a=>{
-    const cid=a.dataset.ch;
-    if(cid && RS.data.ch[cid] && RS.data.ch[cid].done) a.classList.add('done');
+  const btn=document.querySelector('.nav-toc');
+  if(!btn) return;
+  const cur=document.body.dataset.ch||'';
+  const chd=RS.data.ch||{};
+  let cols='';
+  FDE_TOC.forEach(g=>{
+    cols+='<div class="tp-act '+g.cls+'"><div class="tp-actname">'+g.act+'</div>';
+    g.chs.forEach(([id,t])=>{
+      const done=chd[id]&&chd[id].done;
+      cols+='<a href="'+id+'.html" class="'+(id===cur?'cur ':'')+(done?'done':'')+'">'
+        +'<span class="no">'+id.slice(2)+'</span><span>'+t+'</span><span class="tick">✓ 已读</span></a>';
+    });
+    cols+='</div>';
   });
+  cols+='<div class="tp-act a0"><div class="tp-actname">独立单元</div>'
+    +'<a href="index.html"'+(cur===''?' class="cur"':'')+'><span class="no">✦</span><span>序章 · 95% 的项目都死了</span></a>'
+    +'<a href="toolbox.html"'+(cur==='toolbox'?' class="cur"':'')+'><span class="no">✦</span><span>工具箱 · 八件装备</span></a>'
+    +'<a href="finish.html"'+(cur==='finish'?' class="cur"':'')+'><span class="no">✦</span><span>卡册与战绩</span></a></div>';
+  const ORDER=FDE_TOC.flatMap(g=>g.chs.map(c=>c[0]));
+  const doneN=ORDER.filter(c=>chd[c]&&chd[c].done).length;
+  const pct=Math.round(ORDER.reduce((a,c)=>a+((chd[c]||{}).p||0),0)/ORDER.length);
+  const scrim=document.createElement('div'); scrim.className='toc-scrim';
+  const panel=document.createElement('div'); panel.className='tocpanel';
+  panel.innerHTML='<div class="tp-inner">'
+    +'<div class="tp-head"><span class="tp-title">作战地图<small>BATTLE MAP</small></span>'
+    +'<span class="tp-progress"><b>'+pct+'%</b>已读 '+doneN+'/13 章<span class="bar"><i style="width:'+pct+'%"></i></span></span></div>'
+    +'<div class="tp-grid">'+cols+'</div></div>';
+  document.body.appendChild(scrim);
+  document.body.appendChild(panel);
+  const set=o=>{
+    document.body.classList.toggle('toc-open',o);
+    btn.setAttribute('aria-expanded',o?'true':'false');
+  };
+  btn.addEventListener('click',e=>{e.stopPropagation();set(!document.body.classList.contains('toc-open'));});
+  scrim.addEventListener('click',()=>set(false));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false);});
+  if(/[?&]toc=1/.test(location.search)) set(true);   /* 截图/调试用 */
 })();
 
 /* Toast */

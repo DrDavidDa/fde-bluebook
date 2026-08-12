@@ -522,19 +522,32 @@ QUIZ_SCRIPTS = {
 # 站点发布地址（GitHub Pages），canonical/og:url/sitemap 都用它
 BASE_URL = "https://drdavidda.github.io/fde-bluebook/"
 
-# 顶导航短标签（三处同步：本表、index.html、finish.html）
+# 顶导航当前位置短标签（目录面板的完整章目录在 app.js 的 FDE_TOC 里维护）
 NAV_LABELS = {
     "ch01": "Palantir", "ch02": "OpenAI ×26", "ch03": "失败复盘", "ch04": "影子 AI",
     "ch05": "进场 72h", "ch06": "验收契约", "ch07": "evals", "ch08": "最后 100 米",
     "ch09": "砾石路", "ch10": "复盘①", "ch11": "复盘②", "ch12": "$210K",
     "ch13": "拿下 offer", "toolbox": "工具箱",
 }
-NAV = [("index.html","序章","")] + [(c[0]+".html", NAV_LABELS[c[0]], c[0]) for c in CHAPTERS] + [("finish.html","卡册","finish")]
 
 def build_nav(cur):
-    links = "".join('<a href="%s" data-ch="%s">%s</a>' % (u, cid, t) for u, t, cid in NAV)
-    return ('<nav class="topnav"><span class="brand">FDE<span> · 工程师蓝皮书</span></span>'
-            '<div class="map-links">' + links + "</div></nav>")
+    """极简三件套：品牌 / 当前位置 / 目录+工具箱+卡册。章目录在 app.js 注入的作战地图面板里。"""
+    now = ""
+    for cid, fname, act, title in CHAPTERS:
+        if cid == cur and cid.startswith("ch"):
+            actname = act.split(" · ")[0]
+            label = NAV_LABELS.get(cid, title[:8])
+            no = cid[2:] if cid.startswith("ch") else "✦"
+            now = '<span class="nav-now">%s · %s <b>%s</b></span>' % (actname, no, label)
+            break
+    return ('<nav class="topnav">'
+            '<a class="brand" href="index.html">FDE<span> · 工程师蓝皮书</span></a>'
+            + now +
+            '<div class="nav-actions">'
+            '<button class="nav-toc" type="button" aria-expanded="false"><i>☰</i>目录</button>'
+            '<a class="nav-link%s" href="toolbox.html">工具箱</a>'
+            '<a class="nav-link%s" href="finish.html">卡册</a>'
+            '</div></nav>') % (" cur" if cur == "toolbox" else "", " cur" if cur == "finish" else "")
 
 TEMPLATE = """<!DOCTYPE html>
 <html lang="zh-CN"><head>
